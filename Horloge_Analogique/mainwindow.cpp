@@ -9,12 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_heures = QTime::currentTime().hour();
     m_minutes = QTime::currentTime().minute() + m_heures*60;
     m_secondes = QTime::currentTime().second();
-    sXPos= 145 + 125*cos((PI/2)-(m_secondes*PI)/30);
-    sYPos= 40 +(125 - 125*sin((PI/2) +(m_secondes*PI)/30));
-    mXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/30);
-    mYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/30);
-    hXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/360);
-    hYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/360);
+    sXPos= 145 + 125*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
+    sYPos= 40 +(125 - 125*sin((PI/2) +(m_secondes*PI)/FRACTION_MINUTES));
+    mXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
+    mYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/FRACTION_MINUTES);
+    hXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
+    hYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/FRACTION_HEURES);
     timer = new QTimer(this);
     timer->setProperty("isSync", false);
     connect(timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
@@ -44,12 +44,12 @@ void MainWindow::paintEvent(QPaintEvent *){
     centre.setY(cYPos);
 
     if(this->height() - ui->menuBar->height() > this->width()){
-        sXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_secondes*PI)/30);
-        sYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_secondes*PI)/30);
-        mXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/30);
-        mYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/30);
-        hXPos=  cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/360);
-        hYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/360);
+        sXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
+        sYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
+        mXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
+        mYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
+        hXPos=  cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
+        hYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         painter.drawEllipse(centre,cXPos,cXPos);
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
@@ -63,19 +63,19 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cXPos - 10)*cos((PI/2)-(i*PI)/30) -10,cYPos- (cXPos - 10)*sin((PI/2)-(i*PI)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cXPos - 10)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10,cYPos- (cXPos - 10)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(cXPos+ (cXPos - 20)*cos((PI/2)-(i*PI)/30));
-            point.setY(cYPos- (cXPos - 20)*sin((PI/2)-(i*PI)/30));
+            point.setX(cXPos+ (cXPos - 20)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setY(cYPos- (cXPos - 20)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
     }else{
-        sXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/30);
-        sYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/30);
-        mXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/30);
-        mYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/30);
-        hXPos=  cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/360);
-        hYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/360);
+        sXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
+        sYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
+        mXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
+        mYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
+        hXPos=  cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
+        hYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         painter.drawEllipse(centre,cYPos - ui->menuBar->height(),cYPos - ui->menuBar->height());
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
@@ -89,10 +89,10 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/30) -10,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(cXPos+ (cYPos - 20 - ui->menuBar->height() )*cos((PI/2)-(i*PI)/30));
-            point.setY(cYPos - (cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/30));
+            point.setX(cXPos+ (cYPos - 20 - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setY(cYPos - (cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
     }
