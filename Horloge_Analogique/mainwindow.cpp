@@ -24,6 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
     timer->start(TIMER_DELAY - QTime::currentTime().msec());
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
+    ui->actionAffichage->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_AFFICHAGE);
+    ui->actionThemes->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_THEME);
+    ui->actionNouveau_Chronometre->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_CHRONO);
+    ui->actionNouveau_Reveil->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_REVEIL);
+    ui->actionMes_Reveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_REVEILS);
+    ui->actionParametres->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_REVEIL);
+    ui->actionNouveau_Minuteur->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_MINUTEUR);
+    ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
 }//______________________________________________________________________________________________________Fin MainWindow
 
@@ -143,24 +151,29 @@ void MainWindow::timerSlot()//__________________________________________________
 
 void MainWindow::menuAction(QAction *action)//_________________________________________________________Debut menuAction
 {
+
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
-//    case ui->actionParametres_de_l_heure->property(PROPRIETE_ACTION_MENU).toInt():
-
-//        break;
-//    case ui->actionAffichage->objectName():
-
-//        break;
-//    case ui->actionParametres_de_l_heure->objectName():
-
-//        break;
-//    case ui->actionParametres_de_l_heure->objectName():
-
-//        break;
-//    case ui->actionParametres_de_l_heure->objectName():
-
-//        break;
+    case VALEUR_ACTION_PARAMETRE_HEURE:
+        break;
+    case VALEUR_ACTION_AFFICHAGE:
+        break;
+    case VALEUR_ACTION_THEME :
+        break;
+    case VALEUR_ACTION_NOUVEAU_CHRONO :
+        break;
+    case VALEUR_ACTION_NOUVEAU_REVEIL :
+        break;
+    case VALEUR_ACTION_MES_REVEILS :
+        break;
+    case VALEUR_ACTION_PARAMETRE_REVEIL :
+        break;
+    case VALEUR_ACTION_NOUVEAU_MINUTEUR :
+        break;
+    case VALEUR_ACTION_MES_MINUTEUR :
+        break;
     default:
         break;
     }
+
 }//______________________________________________________________________________________________________Fin menuAction
 
