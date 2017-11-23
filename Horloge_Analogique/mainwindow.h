@@ -13,6 +13,8 @@
 #include <QTime>
 #include <QPoint>
 #include <QAction>
+#include <QObject>
+#include <QList>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -120,6 +122,7 @@ private:
     QTimer *m_timer;
     int m_nbChrono;
     int m_nbMinuteurs;
+    QList<Minuteur*> m_listeMinuteurs;
 private slots:
     /**
      * @brief timerSlot
@@ -130,6 +133,8 @@ private slots:
      * @param action
      */
     void menuAction(QAction * action);
+    void MAJC(int index);
+    void MAJM(int index);
 };
 
 #endif // MAINWINDOW_H

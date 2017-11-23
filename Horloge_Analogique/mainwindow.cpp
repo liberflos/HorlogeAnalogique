@@ -54,6 +54,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)//______________________________
 }//___________________________________________________________________________________________________Fin keyPressEvent
 void MainWindow::paintEvent(QPaintEvent *)//___________________________________________________________Debut paintEvent
 {
+    for(int i = 0 ; i < m_listeMinuteurs.size(); i++){
+        m_listeMinuteurs.at(i)->redessiner();
+
+    }
     QPainter painter(this);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
@@ -167,37 +171,48 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         minuteur->close();
         break;
     case VALEUR_ACTION_AFFICHAGE:
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
     case VALEUR_ACTION_THEME :
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
-        chrono->show();
+        connect(chrono,SIGNAL(closeSig(int)),this, SLOT(MAJC(int)));
         m_nbChrono++;
+        nouvelleFenetre->close();
         minuteur->close();
-
+        chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
     case VALEUR_ACTION_MES_REVEILS :
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
-        minuteur->show();
+        m_listeMinuteurs.append(minuteur);
+        connect(minuteur,SIGNAL(closeSig(int)),this, SLOT(MAJM(int)));
+        minuteur->setIndex(m_nbMinuteurs);
         m_nbMinuteurs++;
+        nouvelleFenetre->close();
         chrono->close();
+        minuteur->show();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
+        nouvelleFenetre->close();
         chrono->close();
         minuteur->close();
         break;
@@ -207,3 +222,17 @@ void MainWindow::menuAction(QAction *action)//__________________________________
 
 }//______________________________________________________________________________________________________Fin menuAction
 
+void MainWindow::MAJC(int index)
+{
+    m_nbChrono--;
+}
+void MainWindow::MAJM(int index)
+{
+    qDebug() << index;
+    for(int i = index ; i < m_listeMinuteurs.size(); i++){
+        m_listeMinuteurs.at(i)->deplacer(i);
+        m_listeMinuteurs.at(i)->setIndex(i);
+
+    }
+    m_nbMinuteurs--;
+}

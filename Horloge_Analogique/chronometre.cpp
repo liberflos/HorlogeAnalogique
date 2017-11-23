@@ -15,6 +15,11 @@ Chronometre::~Chronometre()
     delete ui;
 }
 
+void Chronometre::setIndex(int index)
+{
+    m_index = index;
+}
+
 void Chronometre::hideAndShow(bool)
 {
     if(ui->showHideButton->arrowType() == Qt::LeftArrow){
@@ -26,5 +31,11 @@ void Chronometre::hideAndShow(bool)
         ui->showHideButton->setArrowType(Qt::LeftArrow);
 
     }
+}
+
+void Chronometre::quitter()
+{
+    emit closeSig(m_index);
+    close();
 }
 

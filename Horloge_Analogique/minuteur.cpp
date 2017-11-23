@@ -1,5 +1,6 @@
 #include "minuteur.h"
 #include "ui_minuteur.h"
+#include "mainwindow.h"
 
 Minuteur::Minuteur(QWidget *parent) :
     QWidget(parent),
@@ -7,12 +8,28 @@ Minuteur::Minuteur(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
-    connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(close()));
+    connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
 }
 
 Minuteur::~Minuteur()
 {
     delete ui;
+}
+
+void Minuteur::setIndex(int index)
+{
+    m_index = index;
+}
+
+void Minuteur::deplacer(int index)
+{
+    this->setGeometry(this->x(),this->y() - this->height(),this->width(),this->height());
+
+}
+
+void Minuteur::redessiner()
+{
+    this->setGeometry(((QMainWindow*)parent())->width() - this->width(),this->y() ,this->width(),this->height());
 }
 
 void Minuteur::hideAndShow(bool)
@@ -25,4 +42,10 @@ void Minuteur::hideAndShow(bool)
         this->setGeometry(ui->showHideButton->width() + this->x() - this->width(),this->y(),this->width(),this->height());
         ui->showHideButton->setArrowType(Qt::RightArrow);
     }
+}
+
+void Minuteur::quitter()
+{
+    emit closeSig(m_index);
+    close();
 }
