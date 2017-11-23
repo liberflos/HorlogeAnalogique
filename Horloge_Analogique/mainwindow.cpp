@@ -143,7 +143,6 @@ void MainWindow::timerSlot()//__________________________________________________
         m_secondes =0;
         m_minutes++;
         m_heures++;
-
     }
     if(m_minutes == 60*12){
         m_heures=0;
@@ -209,7 +208,6 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->show();
-
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
         nouvelleFenetre->deleteLater();

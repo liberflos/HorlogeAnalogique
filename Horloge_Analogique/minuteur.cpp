@@ -34,17 +34,18 @@ void Minuteur::deplacer(int index)
 
 void Minuteur::redessiner()
 {
-    this->setGeometry(((QMainWindow*)parent())->width() - this->width(),this->y() ,this->width(),this->height());
+    if(ui->showHideButton->arrowType() == Qt::RightArrow){
+        this->setGeometry(((QMainWindow*)parent())->width() - this->width(),this->y() ,this->width(),this->height());
+    }else if(ui->showHideButton->arrowType() == Qt::LeftArrow){
+        this->setGeometry(((QMainWindow*)parent())->width() - ui->showHideButton->width(),this->y() ,this->width(),this->height());
+    }
 }
 
 void Minuteur::hideAndShow(bool)
 {
     if(ui->showHideButton->arrowType() == Qt::RightArrow){
-//        this->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_nbMinuteurs*minuteur->height()),minuteur->width(),minuteur->height());
-        this->setGeometry(this->x() + this->width() - ui->showHideButton->width(),this->y(),this->width(),this->height());
         ui->showHideButton->setArrowType(Qt::LeftArrow);
     }else if(ui->showHideButton->arrowType() == Qt::LeftArrow){
-        this->setGeometry(ui->showHideButton->width() + this->x() - this->width(),this->y(),this->width(),this->height());
         ui->showHideButton->setArrowType(Qt::RightArrow);
     }
 }

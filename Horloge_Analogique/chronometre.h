@@ -18,6 +18,7 @@ public:
     ~Chronometre();
     void setIndex(int index);
     void deplacer(int index);
+    void redessiner();
 signals:
     void closeSigC(int index);
 private:

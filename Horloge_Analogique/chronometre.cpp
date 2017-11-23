@@ -37,6 +37,10 @@ void Chronometre::deplacer(int index)
     this->setGeometry(this->x(),this->y() - this->height(),this->width(),this->height());
 }
 
+void Chronometre::redessiner()
+{
+}
+
 void Chronometre::hideAndShow(bool)
 {
     if(ui->showHideButton->arrowType() == Qt::LeftArrow){
