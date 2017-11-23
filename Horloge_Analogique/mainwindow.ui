@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>477</width>
+    <height>295</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>477</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionParametres_de_l_heure"/>
+    <addaction name="actionAffichage_2"/>
+    <addaction name="actionThemes"/>
+   </widget>
+   <widget class="QMenu" name="menuChronom_tre">
+    <property name="title">
+     <string>Chronomètre</string>
+    </property>
+    <addaction name="actionNouveau_Chronometre"/>
+   </widget>
+   <widget class="QMenu" name="menuR_veil">
+    <property name="title">
+     <string>Réveil</string>
+    </property>
+    <addaction name="actionNouveau_Reveil"/>
+    <addaction name="actionMes_Reveils"/>
+    <addaction name="actionParametres"/>
+   </widget>
+   <widget class="QMenu" name="menuMinuteur">
+    <property name="title">
+     <string>Minuteur</string>
+    </property>
+    <addaction name="actionNouveau_Minuteur"/>
+    <addaction name="actionMes_Minuteurs"/>
+   </widget>
+   <addaction name="menuOptions"/>
+   <addaction name="menuChronom_tre"/>
+   <addaction name="menuR_veil"/>
+   <addaction name="menuMinuteur"/>
+  </widget>
+  <action name="actionNouveau">
+   <property name="text">
+    <string>Nouveau</string>
+   </property>
+  </action>
+  <action name="actionNouveau_2">
+   <property name="text">
+    <string>Nouveau</string>
+   </property>
+  </action>
+  <action name="actionR_gler_l_heur">
+   <property name="text">
+    <string>Paramètres de l'Heure</string>
+   </property>
+  </action>
+  <action name="actionAffichage">
+   <property name="text">
+    <string>Affichage</string>
+   </property>
+  </action>
+  <action name="actionParam_tres_couleurs">
+   <property name="text">
+    <string>Paramètres Couleurs</string>
+   </property>
+  </action>
+  <action name="actionTh_mes">
+   <property name="text">
+    <string>Thèmes</string>
+   </property>
+  </action>
+  <action name="actionNouveau_3">
+   <property name="text">
+    <string>Nouveau</string>
+   </property>
+  </action>
+  <action name="actionMes_R_veils">
+   <property name="text">
+    <string>Mes Réveils</string>
+   </property>
+  </action>
+  <action name="actionConfigurer">
+   <property name="text">
+    <string>Paramètres</string>
+   </property>
+  </action>
+  <action name="actionToto">
+   <property name="text">
+    <string>toto</string>
+   </property>
+  </action>
+  <action name="actionTiti">
+   <property name="text">
+    <string>titi</string>
+   </property>
+  </action>
+  <action name="actionParametres_de_l_heure">
+   <property name="text">
+    <string>Parametres de l'heure</string>
+   </property>
+  </action>
+  <action name="actionAffichage_2">
+   <property name="text">
+    <string>Affichage</string>
+   </property>
+  </action>
+  <action name="actionThemes">
+   <property name="text">
+    <string>Themes</string>
+   </property>
+  </action>
+  <action name="actionNouveau_Chronometre">
+   <property name="text">
+    <string>Nouveau Chronometre</string>
+   </property>
+  </action>
+  <action name="actionNouveau_Reveil">
+   <property name="text">
+    <string>Nouveau Reveil</string>
+   </property>
+  </action>
+  <action name="actionMes_Reveils">
+   <property name="text">
+    <string>Mes Reveils</string>
+   </property>
+  </action>
+  <action name="actionParametres">
+   <property name="text">
+    <string>Parametres</string>
+   </property>
+  </action>
+  <action name="actionNouveau_Minuteur">
+   <property name="text">
+    <string>Nouveau Minuteur</string>
+   </property>
+  </action>
+  <action name="actionMes_Minuteurs">
+   <property name="text">
+    <string>Mes Minuteurs</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
