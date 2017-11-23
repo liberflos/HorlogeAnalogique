@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timer = new QTimer(this);
     timer->setProperty("isSync", false);
     connect(timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
-    timer->start(1000 - QTime::currentTime().msec());
+    timer->start(TIMER_DELAY - QTime::currentTime().msec());
 
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
@@ -101,7 +101,7 @@ void MainWindow::paintEvent(QPaintEvent *){
 void MainWindow::timerSlot()
 {
     if(!timer->property("isSync").toBool()){
-        timer->setInterval(1000);
+        timer->setInterval(TIMER_DELAY);
         timer->setProperty("isSync", true);
     }
     m_secondes++;

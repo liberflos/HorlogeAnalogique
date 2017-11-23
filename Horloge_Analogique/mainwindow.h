@@ -20,6 +20,7 @@
 #define DECALAGE 5
 #define FRACTION_MINUTES 30
 #define FRACTION_HEURES 360
+#define TIMER_DELAY 1000
 #define PROPRIETE_ACTION_MENU "propriete_action_menu"
 #define VALEUR_ACTION_PARAMETRE_HEURE 1
 
