@@ -15,6 +15,8 @@
 #include <QAction>
 
 #include "paramheure.h"
+#include "chronometre.h"
+#include "minuteur.h"
 
 #define PI 3.141592654
 #define DECALAGE 5
@@ -63,11 +65,11 @@ private:
     /**
      * @brief couleur
      */
-    QColor couleur;
+    QColor m_couleur;
     /**
      * @brief centre : Centre de la MainWindow
      */
-    QPoint centre;
+    QPoint m_centre;
     /**
      * @brief m_secondes
      */
@@ -83,39 +85,40 @@ private:
     /**
      * @brief cXPos
      */
-    int cXPos;
+    int m_cXPos;
     /**
      * @brief cYPos
      */
-    int cYPos;
+    int m_cYPos;
     /**
      * @brief sXPos
      */
-    int sXPos;
+    int m_sXPos;
     /**
      * @brief sYPos
      */
-    int sYPos;
+    int m_sYPos;
     /**
      * @brief mXPos
      */
-    int mXPos;
+    int m_mXPos;
     /**
      * @brief mYPos
      */
-    int mYPos;
+    int m_mYPos;
     /**
      * @brief hXPos
      */
-    int hXPos;
+    int m_hXPos;
     /**
      * @brief hYPos
      */
-    int hYPos;
+    int m_hYPos;
     /**
      * @brief timer
      */
-    QTimer *timer;
+    QTimer *m_timer;
+    int m_nbChrono;
 private slots:
     /**
      * @brief timerSlot

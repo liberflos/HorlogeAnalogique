@@ -25,13 +25,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    paramheure.cpp
+    paramheure.cpp \
+    chronometre.cpp \
+    minuteur.cpp
 
 HEADERS  += mainwindow.h \
-    paramheure.h
+    paramheure.h \
+    chronometre.h \
+    minuteur.h
 
 FORMS    += mainwindow.ui \
-    paramheure.ui
+    paramheure.ui \
+    chronometre.ui \
+    minuteur.ui
 
 DISTFILES += \
     TODO.list

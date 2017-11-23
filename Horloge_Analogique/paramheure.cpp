@@ -6,6 +6,11 @@ ParamHeure::ParamHeure(QWidget *parent) :
     ui(new Ui::ParamHeure)
 {
     ui->setupUi(this);
+    ui->comboBox->addItem("Allemand");
+    ui->comboBox->addItem("Anglais");
+    ui->comboBox->addItem("Espagnol");
+    ui->comboBox->addItem("Français");
+    ui->comboBox->addItem("Italien");
 }
 
 ParamHeure::~ParamHeure()
