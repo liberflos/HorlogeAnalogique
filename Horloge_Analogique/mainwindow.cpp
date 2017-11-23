@@ -44,12 +44,12 @@ void MainWindow::paintEvent(QPaintEvent *){
     centre.setY(cYPos);
 
     if(this->height() - ui->menuBar->height() > this->width()){
-        sXPos= cXPos+ (cXPos - 5)*cos((PI/2)-(m_secondes*PI)/30);
-        sYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_secondes*PI)/30);
-        mXPos= cXPos+ (cXPos - 5)*cos((PI/2)-(m_minutes*PI)/30);
-        mYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_minutes*PI)/30);
-        hXPos=  cXPos+ (cXPos - 5)*cos((PI/2)-(m_minutes*PI)/360);
-        hYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_minutes*PI)/360);
+        sXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_secondes*PI)/30);
+        sYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_secondes*PI)/30);
+        mXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/30);
+        mYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/30);
+        hXPos=  cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/360);
+        hYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/360);
         painter.drawEllipse(centre,cXPos,cXPos);
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
@@ -70,12 +70,12 @@ void MainWindow::paintEvent(QPaintEvent *){
             painter.drawEllipse(point,1,1);
         }
     }else{
-        sXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/30);
-        sYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/30);
-        mXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/30);
-        mYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/30);
-        hXPos=  cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/360);
-        hYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/360);
+        sXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/30);
+        sYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/30);
+        mXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/30);
+        mYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/30);
+        hXPos=  cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/360);
+        hYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/360);
         painter.drawEllipse(centre,cYPos - ui->menuBar->height(),cYPos - ui->menuBar->height());
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
