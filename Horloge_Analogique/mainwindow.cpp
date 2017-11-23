@@ -23,10 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->setProperty("isSync", false);
     connect(timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
     timer->start(TIMER_DELAY - QTime::currentTime().msec());
-
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
-}
+}//______________________________________________________________________________________________________Fin MainWindow
 
 MainWindow::~MainWindow()
 {
@@ -38,12 +37,13 @@ MainWindow::~MainWindow()
 //***********************************************METHODES EVENT********************************************************
 //*********************************************************************************************************************
 
-void MainWindow::keyPressEvent(QKeyEvent *event)
+void MainWindow::keyPressEvent(QKeyEvent *event)//__________________________________________________Debut keyPressEvent
 {
     if((event->modifiers() == Qt::ControlModifier) && (event->key() == Qt::Key_Q))
         close();
-}
-void MainWindow::paintEvent(QPaintEvent *){
+}//___________________________________________________________________________________________________Fin keyPressEvent
+void MainWindow::paintEvent(QPaintEvent *)//___________________________________________________________Debut paintEvent
+{
     QPainter painter(this);
     cXPos = this->width()/2;
     cYPos = this->height()/2 + ui->menuBar->height()/2;
@@ -108,7 +108,7 @@ void MainWindow::paintEvent(QPaintEvent *){
             painter.drawEllipse(point,1,1);
         }
     }
-}
+}//___________________________________________________________________________________________________Fin keyPressEvent
 
 //*********************************************************************************************************************
 //**********************************************METHODES PUBLIQUES*****************************************************
