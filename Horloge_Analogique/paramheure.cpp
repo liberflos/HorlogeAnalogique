@@ -2,7 +2,7 @@
 #include "ui_paramheure.h"
 
 ParamHeure::ParamHeure(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::ParamHeure)
 {
     ui->setupUi(this);

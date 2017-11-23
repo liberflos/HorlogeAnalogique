@@ -1,7 +1,8 @@
 #ifndef PARAMHEURE_H
 #define PARAMHEURE_H
 
-#include <QWidget>
+#include <QDialog>
+#include <QFormLayout>
 
 namespace Ui {
 class ParamHeure;
@@ -9,7 +10,7 @@ class ParamHeure;
 /**
  * @brief The ParamHeure class
  */
-class ParamHeure : public QWidget
+class ParamHeure : public QDialog
 {
     Q_OBJECT
 

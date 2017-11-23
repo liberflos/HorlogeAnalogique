@@ -58,8 +58,8 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     QColor couleur;
     centre.setX(cXPos);
     centre.setY(cYPos);
-
     if(this->height() - ui->menuBar->height() > this->width()){
+        painter.drawText(cXPos - 50, centre.y() + cXPos/3,QDate::currentDate().toString());
         sXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
         sYPos= cYPos- (cXPos - DECALAGE)*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
         mXPos= cXPos+ (cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
@@ -88,6 +88,7 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
             painter.drawEllipse(point,1,1);
         }
     }else{
+        painter.drawText(cXPos - 50, cYPos + cYPos/3,QDate::currentDate().toString());
         sXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
         sYPos= cYPos- (cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
         mXPos= cXPos+ (cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES);
@@ -152,8 +153,12 @@ void MainWindow::timerSlot()//__________________________________________________
 void MainWindow::menuAction(QAction *action)//_________________________________________________________Debut menuAction
 {
 
+    ParamHeure *nouvelleFenetre = new ParamHeure(this);
+    nouvelleFenetre->setVisible(true);
+    nouvelleFenetre->setBaseSize(300,300);
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
+        nouvelleFenetre->show();
         break;
     case VALEUR_ACTION_AFFICHAGE:
         break;
