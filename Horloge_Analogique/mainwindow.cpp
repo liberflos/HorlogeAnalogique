@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
+//*********************************************************************************************************************
+//*******************************************CONSTRUCTEUR MAINWINDOW***************************************************
+//*********************************************************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -29,6 +33,10 @@ MainWindow::~MainWindow()
     delete ui;
 
 }
+
+//*********************************************************************************************************************
+//***********************************************METHODES EVENT********************************************************
+//*********************************************************************************************************************
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -63,7 +71,9 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cXPos - 10)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10,cYPos- (cXPos - 10)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cXPos - 10)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10
+                                 ,cYPos- (cXPos - 10)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10
+                                 ,20,20, Qt::AlignCenter,QString::number(i/5));
             }
             point.setX(cXPos+ (cXPos - 20)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
             point.setY(cYPos- (cXPos - 20)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
@@ -89,7 +99,9 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10
+                                 ,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10
+                                 ,20,20, Qt::AlignCenter,QString::number(i/5));
             }
             point.setX(cXPos+ (cYPos - 20 - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
             point.setY(cYPos - (cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
@@ -98,7 +110,15 @@ void MainWindow::paintEvent(QPaintEvent *){
     }
 }
 
-void MainWindow::timerSlot()
+//*********************************************************************************************************************
+//**********************************************METHODES PUBLIQUES*****************************************************
+//*********************************************************************************************************************
+
+//*********************************************************************************************************************
+//**************************************************SLOTS PRIVES*******************************************************
+//*********************************************************************************************************************
+
+void MainWindow::timerSlot()//__________________________________________________________________________Debut timerSlot
 {
     if(!timer->property("isSync").toBool()){
         timer->setInterval(TIMER_DELAY);
@@ -119,9 +139,9 @@ void MainWindow::timerSlot()
 
     update();
 
-}
+}//_______________________________________________________________________________________________________Fin timerSlot
 
-void MainWindow::menuAction(QAction *action)
+void MainWindow::menuAction(QAction *action)//_________________________________________________________Debut menuAction
 {
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
 //    case ui->actionParametres_de_l_heure->property(PROPRIETE_ACTION_MENU).toInt():
@@ -142,5 +162,5 @@ void MainWindow::menuAction(QAction *action)
     default:
         break;
     }
-}
+}//______________________________________________________________________________________________________Fin menuAction
 
