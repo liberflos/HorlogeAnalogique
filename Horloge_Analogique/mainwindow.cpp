@@ -6,17 +6,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    pi = 3.141592654;
-    qDebug() << QTime::currentTime().msec();
     m_heures = QTime::currentTime().hour();
     m_minutes = QTime::currentTime().minute() + m_heures*60;
     m_secondes = QTime::currentTime().second();
-    sXPos= 145 + 125*cos((pi/2)-(m_secondes*pi)/30);
-    sYPos= 40 +(125 - 125*sin((pi/2) +(m_secondes*pi)/30));
-    mXPos= 145 + 125*cos((pi/2)-(m_minutes*pi)/30);
-    mYPos= 165 - 125*sin((pi/2) +(m_minutes*pi)/30);
-    hXPos= 145 + 125*cos((pi/2)-(m_minutes*pi)/360);
-    hYPos= 165 - 125*sin((pi/2) +(m_minutes*pi)/360);
+    sXPos= 145 + 125*cos((PI/2)-(m_secondes*PI)/30);
+    sYPos= 40 +(125 - 125*sin((PI/2) +(m_secondes*PI)/30));
+    mXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/30);
+    mYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/30);
+    hXPos= 145 + 125*cos((PI/2)-(m_minutes*PI)/360);
+    hYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/360);
     timer = new QTimer(this);
     timer->setProperty("isSync", false);
     connect(timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
@@ -44,15 +42,14 @@ void MainWindow::paintEvent(QPaintEvent *){
     QColor couleur;
     centre.setX(cXPos);
     centre.setY(cYPos);
-//    centre.setY(cYPos + ui->menuBar->height()/2);
 
     if(this->height() - ui->menuBar->height() > this->width()){
-        sXPos= cXPos+ (cXPos - 5)*cos((pi/2)-(m_secondes*pi)/30);
-        sYPos= cYPos- (cXPos - 5)*sin((pi/2)-(m_secondes*pi)/30);
-        mXPos= cXPos+ (cXPos - 5)*cos((pi/2)-(m_minutes*pi)/30);
-        mYPos= cYPos- (cXPos - 5)*sin((pi/2)-(m_minutes*pi)/30);
-        hXPos=  cXPos+ (cXPos - 5)*cos((pi/2)-(m_minutes*pi)/360);
-        hYPos= cYPos- (cXPos - 5)*sin((pi/2)-(m_minutes*pi)/360);
+        sXPos= cXPos+ (cXPos - 5)*cos((PI/2)-(m_secondes*PI)/30);
+        sYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_secondes*PI)/30);
+        mXPos= cXPos+ (cXPos - 5)*cos((PI/2)-(m_minutes*PI)/30);
+        mYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_minutes*PI)/30);
+        hXPos=  cXPos+ (cXPos - 5)*cos((PI/2)-(m_minutes*PI)/360);
+        hYPos= cYPos- (cXPos - 5)*sin((PI/2)-(m_minutes*PI)/360);
         painter.drawEllipse(centre,cXPos,cXPos);
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
@@ -66,19 +63,19 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cXPos - 10)*cos((pi/2)-(i*pi)/30) -10,cYPos- (cXPos - 10)*sin((pi/2)-(i*pi)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cXPos - 10)*cos((PI/2)-(i*PI)/30) -10,cYPos- (cXPos - 10)*sin((PI/2)-(i*PI)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(cXPos+ (cXPos - 20)*cos((pi/2)-(i*pi)/30));
-            point.setY(cYPos- (cXPos - 20)*sin((pi/2)-(i*pi)/30));
+            point.setX(cXPos+ (cXPos - 20)*cos((PI/2)-(i*PI)/30));
+            point.setY(cYPos- (cXPos - 20)*sin((PI/2)-(i*PI)/30));
             painter.drawEllipse(point,1,1);
         }
     }else{
-        sXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((pi/2)-(m_secondes*pi)/30);
-        sYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((pi/2)-(m_secondes*pi)/30);
-        mXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((pi/2)-(m_minutes*pi)/30);
-        mYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((pi/2)-(m_minutes*pi)/30);
-        hXPos=  cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((pi/2)-(m_minutes*pi)/360);
-        hYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((pi/2)-(m_minutes*pi)/360);
+        sXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/30);
+        sYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_secondes*PI)/30);
+        mXPos= cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/30);
+        mYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/30);
+        hXPos=  cXPos+ (cYPos - 5 - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/360);
+        hYPos= cYPos- (cYPos - 5 - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/360);
         painter.drawEllipse(centre,cYPos - ui->menuBar->height(),cYPos - ui->menuBar->height());
         couleur.setRgb(255,0,0);
         painter.setPen(couleur);
@@ -92,10 +89,10 @@ void MainWindow::paintEvent(QPaintEvent *){
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((pi/2)-(i*pi)/30) -10,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((pi/2)-(i*pi)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(cXPos+ (cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/30) -10,cYPos - (cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/30) - 10,20,20, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(cXPos+ (cYPos - 20 - ui->menuBar->height() )*cos((pi/2)-(i*pi)/30));
-            point.setY(cYPos - (cYPos - 20 - ui->menuBar->height() )*sin((pi/2)-(i*pi)/30));
+            point.setX(cXPos+ (cYPos - 20 - ui->menuBar->height() )*cos((PI/2)-(i*PI)/30));
+            point.setY(cYPos - (cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/30));
             painter.drawEllipse(point,1,1);
         }
     }

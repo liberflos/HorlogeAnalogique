@@ -16,6 +16,7 @@
 
 #include "paramheure.h"
 
+#define PI 3.141592654
 #define PROPRIETE_ACTION_MENU "propriete_action_menu"
 #define VALEUR_ACTION_PARAMETRE_HEURE 1
 
@@ -48,15 +49,11 @@ public:
 private:
     Ui::MainWindow *ui;
     /**
-     * @brief pi
-     */
-    double pi;
-    /**
      * @brief couleur
      */
     QColor couleur;
     /**
-     * @brief centre
+     * @brief centre : Centre de la MainWindow
      */
     QPoint centre;
     /**
