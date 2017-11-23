@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    m_nbChrono = 0;
     m_heures = QTime::currentTime().hour();
     m_minutes = QTime::currentTime().minute() + m_heures*60;
     m_secondes = QTime::currentTime().second();
@@ -55,7 +56,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     QPainter painter(this);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
-    m_couleur;
     m_centre.setX(m_cXPos);
     m_centre.setY(m_cYPos);
     if(this->height() - ui->menuBar->height() > this->width()){
@@ -154,29 +154,49 @@ void MainWindow::menuAction(QAction *action)//__________________________________
 {
 
     Chronometre *chrono = new Chronometre(this);
-    chrono->setGeometry(0,ui->menuBar->height(),chrono->width(),chrono->height());
+    Minuteur *minuteur = new Minuteur(this);
+
+    chrono->setGeometry(0,ui->menuBar->height() + (m_nbChrono*chrono->height()),chrono->width(),chrono->height());
     ParamHeure *nouvelleFenetre = new ParamHeure(this);
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre->show();
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_AFFICHAGE:
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_THEME :
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
         chrono->show();
+        m_nbChrono++;
+        minuteur->close();
 
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_MES_REVEILS :
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
+        chrono->close();
+        minuteur->close();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
+        minuteur->show();
+        chrono->close();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
+        chrono->close();
+        minuteur->close();
         break;
     default:
         break;
