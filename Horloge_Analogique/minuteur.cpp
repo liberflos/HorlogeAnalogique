@@ -21,6 +21,11 @@ void Minuteur::setIndex(int index)
     m_index = index;
 }
 
+int Minuteur::getIndex()
+{
+    return m_index;
+}
+
 void Minuteur::deplacer(int index)
 {
     this->setGeometry(this->x(),this->y() - this->height(),this->width(),this->height());
@@ -46,6 +51,6 @@ void Minuteur::hideAndShow(bool)
 
 void Minuteur::quitter()
 {
-    emit closeSig(m_index);
+    emit closeSigM(m_index);
     close();
 }

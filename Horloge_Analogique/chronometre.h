@@ -2,6 +2,8 @@
 #define CHRONOMETRE_H
 
 #include <QWidget>
+#include <QTimer>
+#include <QTime>
 
 namespace Ui {
 class Chronometre;
@@ -15,14 +17,23 @@ public:
     explicit Chronometre(QWidget *parent = 0);
     ~Chronometre();
     void setIndex(int index);
+    void deplacer(int index);
 signals:
-    void closeSig(int index);
+    void closeSigC(int index);
 private:
     Ui::Chronometre *ui;
     int m_index;
+    QTime m_temps;
+    QTimer *m_timer;
+    int m_ms;
+    int m_s;
+    int m_m;
+    int m_h;
 private slots:
     void hideAndShow(bool);
     void quitter();
+    void startChrono();
+    void resetChrono();
 };
 
 #endif // CHRONOMETRE_H

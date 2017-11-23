@@ -15,10 +15,11 @@ public:
     explicit Minuteur(QWidget *parent = 0);
     ~Minuteur();
     void setIndex(int index);
+    int getIndex();
     void deplacer(int index);
     void redessiner();
 signals:
-    void closeSig(int index);
+    void closeSigM(int index);
 private:
     Ui::Minuteur *ui;
     int m_index;

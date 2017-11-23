@@ -56,7 +56,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
 {
     for(int i = 0 ; i < m_listeMinuteurs.size(); i++){
         m_listeMinuteurs.at(i)->redessiner();
-
     }
     QPainter painter(this);
     m_cXPos = this->width()/2;
@@ -161,60 +160,61 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Chronometre *chrono = new Chronometre(this);
     Minuteur *minuteur = new Minuteur(this);
 
-    chrono->setGeometry(0,ui->menuBar->height() + (m_nbChrono*chrono->height()),chrono->width(),chrono->height());
-    minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_nbMinuteurs*minuteur->height()),minuteur->width(),minuteur->height());
+    chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),chrono->width(),chrono->height());
+    minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_listeMinuteurs.size()*minuteur->height()),minuteur->width(),minuteur->height());
     ParamHeure *nouvelleFenetre = new ParamHeure(this);
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre->show();
-        chrono->close();
-        minuteur->close();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_AFFICHAGE:
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_THEME :
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
-        connect(chrono,SIGNAL(closeSig(int)),this, SLOT(MAJC(int)));
-        m_nbChrono++;
-        nouvelleFenetre->close();
-        minuteur->close();
+        m_listeChronometres.append(chrono);
+        connect(chrono,SIGNAL(closeSigC(int)),this, SLOT(MAJC(int)));
+        chrono->setIndex(m_listeChronometres.size() - 1);
+        nouvelleFenetre->deleteLater();
+        minuteur->deleteLater();
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_MES_REVEILS :
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         m_listeMinuteurs.append(minuteur);
-        connect(minuteur,SIGNAL(closeSig(int)),this, SLOT(MAJM(int)));
-        minuteur->setIndex(m_nbMinuteurs);
-        m_nbMinuteurs++;
-        nouvelleFenetre->close();
-        chrono->close();
+        connect(minuteur,SIGNAL(closeSigM(int)),this, SLOT(MAJM(int)));
+        minuteur->setIndex(m_listeMinuteurs.size() - 1);
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
         minuteur->show();
+
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
-        nouvelleFenetre->close();
-        chrono->close();
-        minuteur->close();
+        nouvelleFenetre->deleteLater();
+        chrono->deleteLater();
+        minuteur->deleteLater();
         break;
     default:
         break;
@@ -224,15 +224,17 @@ void MainWindow::menuAction(QAction *action)//__________________________________
 
 void MainWindow::MAJC(int index)
 {
-    m_nbChrono--;
+    m_listeChronometres.removeAt(index);
+    for(int i = index ; i < m_listeChronometres.size(); i++){
+        m_listeChronometres.at(i)->deplacer(i);
+        m_listeChronometres.at(i)->setIndex(i);
+    }
 }
 void MainWindow::MAJM(int index)
 {
-    qDebug() << index;
+    m_listeMinuteurs.removeAt(index);
     for(int i = index ; i < m_listeMinuteurs.size(); i++){
         m_listeMinuteurs.at(i)->deplacer(i);
         m_listeMinuteurs.at(i)->setIndex(i);
-
     }
-    m_nbMinuteurs--;
 }

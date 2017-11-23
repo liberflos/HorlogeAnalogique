@@ -123,6 +123,7 @@ private:
     int m_nbChrono;
     int m_nbMinuteurs;
     QList<Minuteur*> m_listeMinuteurs;
+    QList<Chronometre*> m_listeChronometres;
 private slots:
     /**
      * @brief timerSlot
