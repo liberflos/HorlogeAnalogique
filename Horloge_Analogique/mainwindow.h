@@ -119,6 +119,7 @@ private:
      */
     QTimer *m_timer;
     int m_nbChrono;
+    int m_nbMinuteurs;
 private slots:
     /**
      * @brief timerSlot

@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     m_nbChrono = 0;
+    m_nbMinuteurs = 0;
     m_heures = QTime::currentTime().hour();
     m_minutes = QTime::currentTime().minute() + m_heures*60;
     m_secondes = QTime::currentTime().second();
@@ -157,6 +158,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Minuteur *minuteur = new Minuteur(this);
 
     chrono->setGeometry(0,ui->menuBar->height() + (m_nbChrono*chrono->height()),chrono->width(),chrono->height());
+    minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_nbMinuteurs*minuteur->height()),minuteur->width(),minuteur->height());
     ParamHeure *nouvelleFenetre = new ParamHeure(this);
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
@@ -192,6 +194,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         minuteur->show();
+        m_nbMinuteurs++;
         chrono->close();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :

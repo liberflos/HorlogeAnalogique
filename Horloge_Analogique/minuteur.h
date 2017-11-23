@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::Minuteur *ui;
+private slots:
+    void hideAndShow(bool);
 };
 
 #endif // MINUTEUR_H
