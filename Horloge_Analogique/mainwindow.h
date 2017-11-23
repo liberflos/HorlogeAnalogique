@@ -19,6 +19,7 @@
 #include "paramheure.h"
 #include "chronometre.h"
 #include "minuteur.h"
+#include "affichage.h"
 
 #define PI 3.141592654
 #define DECALAGE 5

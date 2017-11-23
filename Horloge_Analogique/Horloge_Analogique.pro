@@ -27,17 +27,20 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     paramheure.cpp \
     chronometre.cpp \
-    minuteur.cpp
+    minuteur.cpp \
+    affichage.cpp
 
 HEADERS  += mainwindow.h \
     paramheure.h \
     chronometre.h \
-    minuteur.h
+    minuteur.h \
+    affichage.h
 
 FORMS    += mainwindow.ui \
     paramheure.ui \
     chronometre.ui \
-    minuteur.ui
+    minuteur.ui \
+    affichage.ui
 
 DISTFILES += \
     TODO.list
