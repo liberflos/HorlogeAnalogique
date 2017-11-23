@@ -32,3 +32,6 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui \
     paramheure.ui
+
+DISTFILES += \
+    TODO.list
