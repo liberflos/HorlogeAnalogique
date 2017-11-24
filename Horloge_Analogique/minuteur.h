@@ -2,6 +2,11 @@
 #define MINUTEUR_H
 
 #include <QWidget>
+#include <QTime>
+#include <QTimer>
+#include <QAudioOutput>
+#include <QAudioFormat>
+#include <QAudioDeviceInfo>
 
 namespace Ui {
 class Minuteur;
@@ -50,7 +55,32 @@ private:
      * @brief m_index
      */
     int m_index;
+    /**
+     * @brief m_s
+     */
+    int m_s;
+    /**
+     * @brief m_m
+     */
+    int m_m;
+    /**
+     * @brief m_h
+     */
+    int m_h;
+    /**
+     * @brief m_timer
+     */
+    QTimer *m_timer;
+    QTime m_temps;
 private slots:
+    /**
+     * @brief updateTime
+     */
+    void updateTime();
+    /**
+     * @brief incremente
+     */
+    void incremente();
     /**
      * @brief hideAndShow
      */
@@ -59,6 +89,8 @@ private slots:
      * @brief quitter
      */
     void quitter();
+    void startMTimer();
+    void stopMTimer();
 };
 
 #endif // MINUTEUR_H

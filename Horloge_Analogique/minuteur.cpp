@@ -7,8 +7,14 @@ Minuteur::Minuteur(QWidget *parent) :
     ui(new Ui::Minuteur)
 {
     ui->setupUi(this);
+    m_timer = new QTimer();
+    m_timer->setInterval(1000);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
+    connect(ui->startButton, SIGNAL(clicked(bool)), this,SLOT(startMTimer()));
+    connect(ui->stopButton, SIGNAL(clicked(bool)), this, SLOT(stopMTimer()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(incremente()));
+    connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(updateTime()));
 }
 
 Minuteur::~Minuteur()
@@ -41,6 +47,35 @@ void Minuteur::redessiner()
     }
 }
 
+void Minuteur::updateTime()
+{
+    m_s = ui->timeEdit->time().second();
+    m_m = ui->timeEdit->time().minute();
+    m_h = ui->timeEdit->time().hour();
+}
+
+void Minuteur::incremente()
+{
+        if(m_s == 0){
+            if(m_m == 0){
+                m_h--;
+                m_m = 60;
+            }
+            m_m--;
+            m_s = 60;
+        }
+        m_s--;
+    m_temps.setHMS(m_h,m_m,m_s);
+    ui->timeEdit->setTime(m_temps);
+    if(m_s == 0 && m_m == 0 && m_h == 0){
+        m_timer->stop();
+//        QAudioOutput *sonnerie;
+//        QAudioDeviceInfo devinfo;
+//        QAudioFormat audioformat;
+
+    }
+}
+
 void Minuteur::hideAndShow(bool)
 {
     if(ui->showHideButton->arrowType() == Qt::RightArrow){
@@ -54,4 +89,16 @@ void Minuteur::quitter()
 {
     emit closeSigM(m_index);
     close();
+}
+
+void Minuteur::startMTimer()
+{
+    m_timer->start();
+    ui->timeEdit->setReadOnly(true);
+}
+
+void Minuteur::stopMTimer()
+{
+    m_timer->stop();
+    ui->timeEdit->setReadOnly(false);
 }
