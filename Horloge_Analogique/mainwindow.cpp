@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionParametresReveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_REVEIL);
     ui->actionNouveau_Minuteur->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_MINUTEUR);
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
+    ui->actionFermer->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_FERMER);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
 }//______________________________________________________________________________________________________Fin MainWindow
 
@@ -263,6 +264,9 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         minuteur->deleteLater();
         affichage->deleteLater();
         theme->deleteLater();
+        break;
+    case VALEUR_ACTION_FERMER :
+        this->close();
         break;
     default:
         break;

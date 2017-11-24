@@ -17,7 +17,10 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Horloge</string>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
@@ -36,6 +39,7 @@
     <addaction name="actionParametres_de_l_heure"/>
     <addaction name="actionAffichage_2"/>
     <addaction name="actionThemes"/>
+    <addaction name="actionFermer"/>
    </widget>
    <widget class="QMenu" name="menuChronom_tre">
     <property name="title">
@@ -161,6 +165,11 @@
   <action name="actionMes_Minuteurs">
    <property name="text">
     <string>Mes Minuteurs</string>
+   </property>
+  </action>
+  <action name="actionFermer">
+   <property name="text">
+    <string>Fermer</string>
    </property>
   </action>
  </widget>
