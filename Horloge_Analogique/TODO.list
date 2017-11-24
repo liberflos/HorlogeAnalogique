@@ -2,6 +2,4 @@ Implementer l'enregistrement des parametres:
     Langue, fuseau horaire, heure, minuteur personnels
 Implementer l'option reveil: prise en charge audio, implementation de l'event
 Implementer la configuration graphique:
-    type d'horloge, couleurs(des aiguilles, du texte, transparence du fond), type de fond(image ou couleur),
-
-Retirer la barre de l'application
+    type d'horloge, couleurs(des aiguilles, du texte, transparence du fond), type de fond(image ou couleur)

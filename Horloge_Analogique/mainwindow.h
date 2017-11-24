@@ -15,6 +15,7 @@
 #include <QAction>
 #include <QObject>
 #include <QList>
+#include <QMouseEvent>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -66,6 +67,7 @@ public:
      * @brief paintEvent
      */
     void paintEvent(QPaintEvent *);
+    void mouseDoubleClickEvent(QMouseEvent *);
 private:
     Ui::MainWindow *ui;
     /**
@@ -124,6 +126,8 @@ private:
      * @brief timer
      */
     QTimer *m_timer;
+    QTimer *m_timerShowFrame;
+
     /**
      * @brief m_nbChrono
      */

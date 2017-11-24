@@ -7,7 +7,7 @@ Minuteur::Minuteur(QWidget *parent) :
     ui(new Ui::Minuteur)
 {
     ui->setupUi(this);
-    m_timer = new QTimer();
+    m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));

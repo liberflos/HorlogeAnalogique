@@ -9,6 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    ui->menuBar->hide();
     m_nbChrono = 0;
     m_nbMinuteurs = 0;
     m_heures = QTime::currentTime().hour();
@@ -57,7 +60,12 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     for(int i = 0 ; i < m_listeMinuteurs.size(); i++){
         m_listeMinuteurs.at(i)->redessiner();
     }
+    QBrush brush;
+    m_couleur.setRgb(128,128,128);
+    brush.setStyle(Qt::SolidPattern);
+    brush.setColor(m_couleur);
     QPainter painter(this);
+    painter.setBrush(brush);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
     m_centre.setX(m_cXPos);
@@ -152,8 +160,22 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         painter.drawText(m_cXPos - 50, m_cYPos + m_cYPos/3,QDate::currentDate().toString());
 
     }
+}//______________________________________________________________________________________________________Fin paintEvent
 
-}//___________________________________________________________________________________________________Fin keyPressEvent
+void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
+{
+    qDebug() << this->windowFlags().testFlag(Qt::FramelessWindowHint);
+    if(this->windowFlags().testFlag(Qt::FramelessWindowHint)){
+        this->setWindowFlags(Qt::WindowTitleHint);
+        ui->menuBar->show();
+        this->show();
+    }else{
+        this->setWindowFlags(Qt::FramelessWindowHint);
+        ui->menuBar->hide();
+        this->setGeometry(this->x(),this->y(), this->width(), this->height());
+        this->show();
+    }
+}
 
 //*********************************************************************************************************************
 //**********************************************METHODES PUBLIQUES*****************************************************
