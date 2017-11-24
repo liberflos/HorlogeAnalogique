@@ -9,9 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setToolTip("Double-cliquer pour afficher les menus");
-    this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
+    this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setToolTip("Double-cliquer pour afficher les menus");
     ui->menuBar->hide();
     m_nbChrono = 0;
     m_nbMinuteurs = 0;
@@ -27,7 +27,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_timer = new QTimer(this);
     m_timer->setProperty("isSync", false);
     connect(m_timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
-    m_timer->start(TIMER_DELAY - QTime::currentTime().msec());
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
     ui->actionAffichage_2->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_AFFICHAGE);
     ui->actionThemes->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_THEME);
@@ -39,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
     ui->actionFermer->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_FERMER);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
+    m_timer->start(TIMER_DELAY - QTime::currentTime().msec());
 }//______________________________________________________________________________________________________Fin MainWindow
 
 MainWindow::~MainWindow()
@@ -165,7 +165,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
 {
-    qDebug() << this->windowFlags().testFlag(Qt::FramelessWindowHint);
     if(this->windowFlags().testFlag(Qt::FramelessWindowHint)){
         this->setWindowFlags(Qt::WindowTitleHint);
         ui->menuBar->show();
@@ -176,7 +175,6 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
         this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
         this->show();
     }
-    qDebug() << this->windowFlags();
 }
 
 //*********************************************************************************************************************
