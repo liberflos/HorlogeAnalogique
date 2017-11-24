@@ -6,12 +6,18 @@
 namespace Ui {
 class Affichage;
 }
-
+/**
+ * @brief The Affichage class
+ */
 class Affichage : public QDialog
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Affichage
+     * @param parent
+     */
     explicit Affichage(QWidget *parent = 0);
     ~Affichage();
 

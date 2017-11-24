@@ -6,12 +6,18 @@
 namespace Ui {
 class ParamReveils;
 }
-
+/**
+ * @brief The ParamReveils class
+ */
 class ParamReveils : public QDialog
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief ParamReveils
+     * @param parent
+     */
     explicit ParamReveils(QWidget *parent = 0);
     ~ParamReveils();
 

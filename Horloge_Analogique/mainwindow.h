@@ -122,9 +122,21 @@ private:
      * @brief timer
      */
     QTimer *m_timer;
+    /**
+     * @brief m_nbChrono
+     */
     int m_nbChrono;
+    /**
+     * @brief m_nbMinuteurs
+     */
     int m_nbMinuteurs;
+    /**
+     * @brief m_listeMinuteurs
+     */
     QList<Minuteur*> m_listeMinuteurs;
+    /**
+     * @brief m_listeChronometres
+     */
     QList<Chronometre*> m_listeChronometres;
 private slots:
     /**
@@ -136,7 +148,15 @@ private slots:
      * @param action
      */
     void menuAction(QAction * action);
+    /**
+     * @brief MAJC
+     * @param index
+     */
     void MAJC(int index);
+    /**
+     * @brief MAJM
+     * @param index
+     */
     void MAJM(int index);
 };
 

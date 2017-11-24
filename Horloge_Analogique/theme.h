@@ -6,12 +6,18 @@
 namespace Ui {
 class Theme;
 }
-
+/**
+ * @brief The Theme class
+ */
 class Theme : public QDialog
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Theme
+     * @param parent
+     */
     explicit Theme(QWidget *parent = 0);
     ~Theme();
 
