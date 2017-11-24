@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 //*********************************************************************************************************************
 //*******************************************CONSTRUCTEUR MAINWINDOW***************************************************
 //*********************************************************************************************************************
@@ -31,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionNouveau_Chronometre->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_CHRONO);
     ui->actionNouveau_Reveil->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_REVEIL);
     ui->actionMes_Reveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_REVEILS);
-    ui->actionParametres->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_REVEIL);
+    ui->actionParametresReveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_REVEIL);
     ui->actionNouveau_Minuteur->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_MINUTEUR);
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
@@ -266,7 +265,7 @@ void MainWindow::MAJC(int index)
 {
     m_listeChronometres.removeAt(index);
     for(int i = index ; i < m_listeChronometres.size(); i++){
-        m_listeChronometres.at(i)->deplacer(i);
+        m_listeChronometres.at(i)->deplacer();
         m_listeChronometres.at(i)->setIndex(i);
     }
 }
@@ -274,7 +273,7 @@ void MainWindow::MAJM(int index)
 {
     m_listeMinuteurs.removeAt(index);
     for(int i = index ; i < m_listeMinuteurs.size(); i++){
-        m_listeMinuteurs.at(i)->deplacer(i);
+        m_listeMinuteurs.at(i)->deplacer();
         m_listeMinuteurs.at(i)->setIndex(i);
     }
 }

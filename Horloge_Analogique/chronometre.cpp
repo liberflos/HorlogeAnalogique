@@ -13,7 +13,7 @@ Chronometre::Chronometre(QWidget *parent) :
     m_ms = 0;
     m_timer = new QTimer(this);
     m_temps.setHMS(m_h,m_m,m_s,m_ms);
-    m_timer->setInterval(1);
+    m_timer->setInterval(10);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
     connect(ui->startButton, SIGNAL(clicked(bool)), m_timer, SLOT(start()));
@@ -32,7 +32,7 @@ void Chronometre::setIndex(int index)
     m_index = index;
 }
 
-void Chronometre::deplacer(int index)
+void Chronometre::deplacer()
 {
     this->setGeometry(this->x(),this->y() - this->height(),this->width(),this->height());
 }
@@ -62,8 +62,8 @@ void Chronometre::quitter()
 void Chronometre::startChrono()
 {
 
-    m_ms++;
-    if(m_ms == 999){
+    m_ms+= 10;
+    if(m_ms == 1000){
         if(m_s == 59){
             if(m_m == 59){
                 m_h++;

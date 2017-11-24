@@ -28,19 +28,25 @@ SOURCES += main.cpp\
     paramheure.cpp \
     chronometre.cpp \
     minuteur.cpp \
-    affichage.cpp
+    affichage.cpp \
+    theme.cpp \
+    paramreveils.cpp
 
 HEADERS  += mainwindow.h \
     paramheure.h \
     chronometre.h \
     minuteur.h \
-    affichage.h
+    affichage.h \
+    theme.h \
+    paramreveils.h
 
 FORMS    += mainwindow.ui \
     paramheure.ui \
     chronometre.ui \
     minuteur.ui \
-    affichage.ui
+    affichage.ui \
+    theme.ui \
+    paramreveils.ui
 
 DISTFILES += \
     TODO.list

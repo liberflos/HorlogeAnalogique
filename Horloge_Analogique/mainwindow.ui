@@ -49,7 +49,7 @@
     </property>
     <addaction name="actionNouveau_Reveil"/>
     <addaction name="actionMes_Reveils"/>
-    <addaction name="actionParametres"/>
+    <addaction name="actionParametresReveils"/>
    </widget>
    <widget class="QMenu" name="menuMinuteur">
     <property name="title">
@@ -148,7 +148,7 @@
     <string>Mes Reveils</string>
    </property>
   </action>
-  <action name="actionParametres">
+  <action name="actionParametresReveils">
    <property name="text">
     <string>Parametres</string>
    </property>

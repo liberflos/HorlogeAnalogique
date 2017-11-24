@@ -26,7 +26,7 @@ int Minuteur::getIndex()
     return m_index;
 }
 
-void Minuteur::deplacer(int index)
+void Minuteur::deplacer()
 {
     this->setGeometry(this->x(),this->y() - this->height(),this->width(),this->height());
 

@@ -16,7 +16,7 @@ public:
     ~Minuteur();
     void setIndex(int index);
     int getIndex();
-    void deplacer(int index);
+    void deplacer();
     void redessiner();
 signals:
     void closeSigM(int index);

@@ -18,6 +18,7 @@
 
 #include "paramheure.h"
 #include "chronometre.h"
+#include "paramreveils.h"
 #include "minuteur.h"
 #include "affichage.h"
 

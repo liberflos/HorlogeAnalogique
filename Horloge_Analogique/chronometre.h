@@ -17,7 +17,7 @@ public:
     explicit Chronometre(QWidget *parent = 0);
     ~Chronometre();
     void setIndex(int index);
-    void deplacer(int index);
+    void deplacer();
     void redessiner();
 signals:
     void closeSigC(int index);
