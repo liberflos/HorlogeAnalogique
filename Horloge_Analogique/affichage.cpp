@@ -6,6 +6,8 @@ Affichage::Affichage(QWidget *parent) :
     ui(new Ui::Affichage)
 {
     ui->setupUi(this);
+    connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
+    connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
 }
 
 Affichage::~Affichage()

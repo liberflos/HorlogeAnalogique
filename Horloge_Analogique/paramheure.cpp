@@ -11,6 +11,8 @@ ParamHeure::ParamHeure(QWidget *parent) :
     ui->comboBox->addItem("Espagnol");
     ui->comboBox->addItem("Français");
     ui->comboBox->addItem("Italien");
+    connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
+    connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
 }
 
 ParamHeure::~ParamHeure()

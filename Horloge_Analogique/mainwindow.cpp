@@ -190,7 +190,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Chronometre *chrono = new Chronometre(this);
     Minuteur *minuteur = new Minuteur(this);
     Affichage *affichage = new Affichage(this);
-
+    Theme *theme = new Theme(this);
     chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),chrono->width(),chrono->height());
     minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_listeMinuteurs.size()*minuteur->height()),minuteur->width(),minuteur->height());
     ParamHeure *nouvelleFenetre = new ParamHeure(this);
@@ -200,11 +200,13 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         break;
     case VALEUR_ACTION_AFFICHAGE:
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
+        theme->deleteLater();
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
@@ -212,6 +214,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->show();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
         m_listeChronometres.append(chrono);
@@ -220,6 +223,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         nouvelleFenetre->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
@@ -227,18 +231,21 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         break;
     case VALEUR_ACTION_MES_REVEILS :
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         m_listeMinuteurs.append(minuteur);
@@ -247,6 +254,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         minuteur->show();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
@@ -254,6 +262,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
+        theme->deleteLater();
         break;
     default:
         break;

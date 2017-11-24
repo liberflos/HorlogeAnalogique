@@ -21,6 +21,7 @@
 #include "paramreveils.h"
 #include "minuteur.h"
 #include "affichage.h"
+#include "theme.h"
 
 #define PI 3.141592654
 #define DECALAGE 5
