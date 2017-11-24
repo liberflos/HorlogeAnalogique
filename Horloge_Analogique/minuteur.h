@@ -71,6 +71,9 @@ private:
      * @brief m_timer
      */
     QTimer *m_timer;
+    /**
+     * @brief m_temps
+     */
     QTime m_temps;
 private slots:
     /**
@@ -89,7 +92,13 @@ private slots:
      * @brief quitter
      */
     void quitter();
+    /**
+     * @brief startMTimer
+     */
     void startMTimer();
+    /**
+     * @brief stopMTimer
+     */
     void stopMTimer();
 };
 
