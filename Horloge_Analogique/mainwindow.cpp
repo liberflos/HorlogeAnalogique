@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setToolTip("Double-cliquer pour afficher les menus");
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     ui->menuBar->hide();
     m_nbChrono = 0;
@@ -171,11 +171,12 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
         ui->menuBar->show();
         this->show();
     }else{
-        this->setWindowFlags(Qt::FramelessWindowHint);
         ui->menuBar->hide();
         this->setGeometry(this->x(),this->y(), this->width(), this->height());
+        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
         this->show();
     }
+    qDebug() << this->windowFlags();
 }
 
 //*********************************************************************************************************************
