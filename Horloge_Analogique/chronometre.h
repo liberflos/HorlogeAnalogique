@@ -88,7 +88,13 @@ private slots:
      * @brief resetChrono
      */
     void resetChrono();
+    /**
+     * @brief incrementChrono
+     */
     void incrementChrono();
+    /**
+     * @brief stopChrono
+     */
     void stopChrono();
 };
 
