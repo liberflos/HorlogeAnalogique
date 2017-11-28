@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     minuteur.cpp \
     affichage.cpp \
     theme.cpp \
-    paramreveils.cpp
+    paramreveils.cpp \
+    reveil.cpp
 
 HEADERS  += mainwindow.h \
     paramheure.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     minuteur.h \
     affichage.h \
     theme.h \
-    paramreveils.h
+    paramreveils.h \
+    reveil.h
 
 FORMS    += mainwindow.ui \
     paramheure.ui \
@@ -45,7 +47,8 @@ FORMS    += mainwindow.ui \
     minuteur.ui \
     affichage.ui \
     theme.ui \
-    paramreveils.ui
+    paramreveils.ui \
+    reveil.ui
 
 DISTFILES += \
     TODO.list
