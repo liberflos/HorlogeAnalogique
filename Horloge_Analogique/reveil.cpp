@@ -18,7 +18,6 @@ Reveil::~Reveil()
 
 void Reveil::checkTheState()
 {
-    qDebug() << ui->checkBox_8->checkState();
     if(ui->checkBox_8->checkState() == Qt::PartiallyChecked ||ui->checkBox_8->checkState() == Qt::Unchecked){
         ui->spinBox->setDisabled(true);
     }else{

@@ -32,12 +32,12 @@ void Affichage::setTypeHorloge(int type)
 void Affichage::confirmeSettings()
 {
     m_settings->setValue(TYPE_HORLOGE, ui->comboBoxTypeHorloge->currentIndex());
-    m_settings->setValue("FormeAiguille", ui->comboBoxFormeAiguille->currentIndex());
-    m_settings->setValue("TypeDeFond", ui->comboBoxTypeFond->currentIndex());
-    m_settings->setValue("CouleurHeure", m_couleurHeureTMP);
-    m_settings->setValue("CouleurMinute", m_couleurMinuteTMP);
-    m_settings->setValue("CouleurSecondes", m_couleurSecondeTMP);
-    m_settings->setValue("CouleurTexte", m_couleurTexteTMP);
-    m_settings->setValue("Transparence", ui->spinBoxTranspFond->value());
+    m_settings->setValue(FORME_AIGUILLE, ui->comboBoxFormeAiguille->currentIndex());
+    m_settings->setValue(TYPE_DE_FOND, ui->comboBoxTypeFond->currentIndex());
+    m_settings->setValue(COULEUR_HEURE, m_couleurHeureTMP);
+    m_settings->setValue(COULEUR_MINUTE, m_couleurMinuteTMP);
+    m_settings->setValue(COULEUR_SECONDE, m_couleurSecondeTMP);
+    m_settings->setValue(COULEUR_TEXTE, m_couleurTexteTMP);
+    m_settings->setValue(TRANSPARENCE, ui->spinBoxTranspFond->value());
     m_settings->setValue(TAILLE_TEXTE, ui->spinBoxTailleTexte->value());
 }

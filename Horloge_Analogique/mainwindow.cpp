@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
-    this->setToolTip("Double-cliquer pour afficher les menus");
+    this->setToolTip("Double-cliquer pour afficher/cacher les menus");
     ui->menuBar->hide();
     m_nbChrono = 0;
     m_nbMinuteurs = 0;
@@ -71,7 +71,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     QPainter painter(this);
     painter.setBrush(brush);
     QFont font;
-    qDebug() << m_settings->value(TAILLE_TEXTE, "pas bon").toString();
     font.setPointSize(m_settings->value(TAILLE_TEXTE, 14).toInt());
     painter.setFont(font);
     m_cXPos = this->width()/2;
@@ -121,7 +120,7 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
             point.setY(m_cYPos- (m_cXPos - 20)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
-        painter.drawText(m_cXPos - 50, m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
+        painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
 
     }else{
         m_sXPos= m_cXPos + (m_cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
@@ -165,13 +164,10 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
             point.setY(m_cYPos - (m_cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
-        painter.drawText(m_cXPos - 50, m_cYPos + m_cYPos/3,QDate::currentDate().toString());
+        painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_cYPos + m_cYPos/3,QDate::currentDate().toString());
 
     }
-    for(int i = 0 ; i < m_settings->allKeys().length() ; i++){
-        qDebug() << m_settings->allKeys().value(i) << "toto";
-
-    }
+//    qDebug() << QDate::currentDate().toString().size() <<QDate::currentDate().toString().length() << ;
 }//______________________________________________________________________________________________________Fin paintEvent
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *)

@@ -5,8 +5,14 @@
 #include <QSettings>
 
 #define TYPE_HORLOGE "TypeHorloge"
-#define TAILLE_TEXTE"TailleTexte"
-
+#define TAILLE_TEXTE "TailleTexte"
+#define FORME_AIGUILLE "FormeAiguille"
+#define TYPE_DE_FOND "TypeDeFond"
+#define COULEUR_HEURE "CouleurHeure"
+#define COULEUR_MINUTE "CouleurMinute"
+#define COULEUR_SECONDE "CouleurSeconde"
+#define COULEUR_TEXTE "CouleurTexte"
+#define TRANSPARENCE "Transparence"
 namespace Ui {
 class Affichage;
 }
