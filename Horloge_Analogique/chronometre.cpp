@@ -14,11 +14,13 @@ Chronometre::Chronometre(QWidget *parent) :
     m_timer = new QTimer(this);
     m_temps.setHMS(m_h,m_m,m_s,m_ms);
     m_timer->setInterval(10);
+
+    ui->stopButton->setDisabled(true);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
-    connect(ui->startButton, SIGNAL(clicked(bool)), m_timer, SLOT(start()));
-    connect(ui->stopButton, SIGNAL(clicked(bool)), m_timer, SLOT(stop()));
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(startChrono()));
+    connect(ui->startButton, SIGNAL(clicked(bool)), this, SLOT(startChrono()));
+    connect(ui->stopButton, SIGNAL(clicked(bool)), this, SLOT(stopChrono()));
+        connect(m_timer, SIGNAL(timeout()), this, SLOT(incrementChrono()));
     connect(ui->resetButton, SIGNAL(clicked(bool)), this, SLOT(resetChrono()));
 }
 
@@ -61,7 +63,24 @@ void Chronometre::quitter()
 
 void Chronometre::startChrono()
 {
+    m_timer->start();
+    ui->startButton->setDisabled(true);
+    ui->stopButton->setEnabled(true);
+}
 
+void Chronometre::resetChrono()
+{
+    m_h = 0;
+    m_m = 0;
+    m_s = 0;
+    m_ms = 0;
+    m_temps.setHMS(m_h,m_m,m_s,m_ms);
+    ui->timeEdit->setTime(m_temps);
+
+}
+
+void Chronometre::incrementChrono()
+{
     m_ms+= 10;
     if(m_ms == 1000){
         if(m_s == 59){
@@ -77,16 +96,12 @@ void Chronometre::startChrono()
     }
     m_temps.setHMS(m_h,m_m,m_s,m_ms);
     ui->timeEdit->setTime(m_temps);
+
 }
 
-void Chronometre::resetChrono()
+void Chronometre::stopChrono()
 {
-    m_h = 0;
-    m_m = 0;
-    m_s = 0;
-    m_ms = 0;
-    m_temps.setHMS(m_h,m_m,m_s,m_ms);
-    ui->timeEdit->setTime(m_temps);
-
+    m_timer->stop();
+    ui->startButton->setEnabled(true);
+    ui->stopButton->setDisabled(true);
 }
-

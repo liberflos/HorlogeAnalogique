@@ -88,6 +88,8 @@ private slots:
      * @brief resetChrono
      */
     void resetChrono();
+    void incrementChrono();
+    void stopChrono();
 };
 
 #endif // CHRONOMETRE_H
