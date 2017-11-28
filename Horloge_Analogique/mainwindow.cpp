@@ -9,6 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QCoreApplication::setOrganizationName("AppliHours");
+    QCoreApplication::setApplicationName("HorlogeAnalogique");
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setToolTip("Double-cliquer pour afficher les menus");

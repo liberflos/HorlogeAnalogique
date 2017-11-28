@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     affichage.cpp \
     theme.cpp \
     paramreveils.cpp \
-    reveil.cpp
+    reveil.cpp \
+    sauvegardesettings.cpp
 
 HEADERS  += mainwindow.h \
     paramheure.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     affichage.h \
     theme.h \
     paramreveils.h \
-    reveil.h
+    reveil.h \
+    sauvegardesettings.h
 
 FORMS    += mainwindow.ui \
     paramheure.ui \

@@ -2,6 +2,7 @@
 #define AFFICHAGE_H
 
 #include <QDialog>
+#include <QSettings>
 
 namespace Ui {
 class Affichage;
@@ -23,6 +24,9 @@ public:
 
 private:
     Ui::Affichage *ui;
+    QSettings m_settings;
+private slots:
+    void setTypeHorloge(int type);
 };
 
 #endif // AFFICHAGE_H
