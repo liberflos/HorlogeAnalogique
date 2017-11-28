@@ -20,7 +20,7 @@ Chronometre::Chronometre(QWidget *parent) :
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
     connect(ui->startButton, SIGNAL(clicked(bool)), this, SLOT(startChrono()));
     connect(ui->stopButton, SIGNAL(clicked(bool)), this, SLOT(stopChrono()));
-        connect(m_timer, SIGNAL(timeout()), this, SLOT(incrementChrono()));
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(incrementChrono()));
     connect(ui->resetButton, SIGNAL(clicked(bool)), this, SLOT(resetChrono()));
 }
 

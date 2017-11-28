@@ -9,6 +9,7 @@ Minuteur::Minuteur(QWidget *parent) :
     ui->setupUi(this);
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
+    ui->stopButton->setDisabled(true);
     connect(ui->showHideButton, SIGNAL(clicked(bool)), this, SLOT(hideAndShow(bool)));
     connect(ui->quitButton, SIGNAL(clicked(bool)), this, SLOT(quitter()));
     connect(ui->startButton, SIGNAL(clicked(bool)), this,SLOT(startMTimer()));
@@ -95,10 +96,14 @@ void Minuteur::startMTimer()
 {
     m_timer->start();
     ui->timeEdit->setReadOnly(true);
+    ui->startButton->setDisabled(true);
+    ui->stopButton->setEnabled(true);
 }
 
 void Minuteur::stopMTimer()
 {
     m_timer->stop();
     ui->timeEdit->setReadOnly(false);
+    ui->startButton->setEnabled(true);
+    ui->stopButton->setDisabled(true);
 }
