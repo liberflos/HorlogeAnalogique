@@ -4,6 +4,9 @@
 #include <QDialog>
 #include <QSettings>
 
+#define TYPE_HORLOGE "TypeHorloge"
+#define TAILLE_TEXTE"TailleTexte"
+
 namespace Ui {
 class Affichage;
 }
@@ -24,7 +27,7 @@ public:
 
 private:
     Ui::Affichage *ui;
-    QSettings m_settings;
+    QSettings *m_settings;
     int m_typeHorlogeTMP;
     int m_formeAiguilleTMP;
     int m_typeDeFondTMP;

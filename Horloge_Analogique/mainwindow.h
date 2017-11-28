@@ -16,6 +16,7 @@
 #include <QObject>
 #include <QList>
 #include <QMouseEvent>
+#include <QSettings>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -128,7 +129,6 @@ private:
      */
     QTimer *m_timer;
     QTimer *m_timerShowFrame;
-
     /**
      * @brief m_nbChrono
      */
@@ -145,6 +145,7 @@ private:
      * @brief m_listeChronometres
      */
     QList<Chronometre*> m_listeChronometres;
+    QSettings *m_settings;
 private slots:
     /**
      * @brief timerSlot

@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
+    m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setToolTip("Double-cliquer pour afficher les menus");
@@ -69,6 +70,10 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     brush.setColor(m_couleur);
     QPainter painter(this);
     painter.setBrush(brush);
+    QFont font;
+    qDebug() << m_settings->value(TAILLE_TEXTE, "pas bon").toString();
+    font.setPointSize(m_settings->value(TAILLE_TEXTE, 14).toInt());
+    painter.setFont(font);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
     m_centre.setX(m_cXPos);
@@ -161,6 +166,10 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
             painter.drawEllipse(point,1,1);
         }
         painter.drawText(m_cXPos - 50, m_cYPos + m_cYPos/3,QDate::currentDate().toString());
+
+    }
+    for(int i = 0 ; i < m_settings->allKeys().length() ; i++){
+        qDebug() << m_settings->allKeys().value(i) << "toto";
 
     }
 }//______________________________________________________________________________________________________Fin paintEvent
