@@ -17,6 +17,8 @@ public:
 
 private:
     Ui::Reveil *ui;
+private slots:
+    void checkTheState();
 };
 
 #endif // REVEIL_H

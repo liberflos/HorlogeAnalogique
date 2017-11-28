@@ -214,18 +214,22 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Minuteur *minuteur = new Minuteur(this);
     Affichage *affichage = new Affichage(this);
     Theme *theme = new Theme(this);
+    Reveil *reveil = new Reveil(this);
+
     chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),chrono->width(),chrono->height());
     minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_listeMinuteurs.size()*minuteur->height()),minuteur->width(),minuteur->height());
     ParamHeure *nouvelleFenetre = new ParamHeure(this);
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre->show();
+        reveil->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
         theme->deleteLater();
         break;
     case VALEUR_ACTION_AFFICHAGE:
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
@@ -233,6 +237,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
@@ -243,6 +248,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         m_listeChronometres.append(chrono);
         connect(chrono,SIGNAL(closeSigC(int)),this, SLOT(MAJC(int)));
         chrono->setIndex(m_listeChronometres.size() - 1);
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         minuteur->deleteLater();
         affichage->deleteLater();
@@ -250,6 +256,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
+        reveil->show();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
@@ -257,6 +264,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         theme->deleteLater();
         break;
     case VALEUR_ACTION_MES_REVEILS :
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
@@ -264,6 +272,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         theme->deleteLater();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
@@ -274,6 +283,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         m_listeMinuteurs.append(minuteur);
         connect(minuteur,SIGNAL(closeSigM(int)),this, SLOT(MAJM(int)));
         minuteur->setIndex(m_listeMinuteurs.size() - 1);
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         affichage->deleteLater();
@@ -281,6 +291,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         minuteur->show();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
+        reveil->deleteLater();
         nouvelleFenetre->deleteLater();
         chrono->deleteLater();
         minuteur->deleteLater();
