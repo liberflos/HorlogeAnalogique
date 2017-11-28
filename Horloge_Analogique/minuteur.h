@@ -7,6 +7,8 @@
 #include <QAudioOutput>
 #include <QAudioFormat>
 #include <QAudioDeviceInfo>
+#include <QSoundEffect>
+#include <QMediaPlayer>
 
 namespace Ui {
 class Minuteur;
@@ -75,6 +77,8 @@ private:
      * @brief m_temps
      */
     QTime m_temps;
+    QMediaPlayer *m_player;
+
 private slots:
     /**
      * @brief updateTime

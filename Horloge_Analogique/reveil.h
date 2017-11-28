@@ -2,6 +2,8 @@
 #define REVEIL_H
 
 #include <QDialog>
+#include <QMediaPlayer>
+#include <QTimer>
 
 namespace Ui {
 class Reveil;
@@ -17,8 +19,11 @@ public:
 
 private:
     Ui::Reveil *ui;
+    QMediaPlayer *m_player;
+    QTimer *m_timer;
 private slots:
     void checkTheState();
+    void lancerSonnerie();
 };
 
 #endif // REVEIL_H

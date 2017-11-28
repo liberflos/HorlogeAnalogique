@@ -70,10 +70,12 @@ void Minuteur::incremente()
     ui->timeEdit->setTime(m_temps);
     if(m_s == 0 && m_m == 0 && m_h == 0){
         m_timer->stop();
-//        QAudioOutput *sonnerie;
-//        QAudioDeviceInfo devinfo;
-//        QAudioFormat audioformat;
-
+        //ATTENTION LE FICHIER UTILISÉ ICI N'EST PAS INTÉGRÉ AU PROJET
+        m_player = new QMediaPlayer(this);
+//        connect(player, SIGNAL(positionChanged(qint64)), this, SLOT(positionChanged(qint64)));
+        m_player->setMedia(QUrl::fromLocalFile("/home/turwolf/Téléchargements/alarm-clock-01.mp3"));
+        m_player->setVolume(50);
+        m_player->play();
     }
 }
 
@@ -102,7 +104,12 @@ void Minuteur::startMTimer()
 
 void Minuteur::stopMTimer()
 {
-    m_timer->stop();
+    if(m_timer->isActive()){
+        m_timer->stop();
+    }
+    else{
+        m_player->stop();
+    }
     ui->timeEdit->setReadOnly(false);
     ui->startButton->setEnabled(true);
     ui->stopButton->setDisabled(true);
