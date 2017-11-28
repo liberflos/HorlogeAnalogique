@@ -71,7 +71,8 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     QPainter painter(this);
     painter.setBrush(brush);
     QFont font;
-    font.setPointSize(m_settings->value(TAILLE_TEXTE, 14).toInt());
+    int fontSize = m_settings->value(TAILLE_TEXTE, 14).toInt();
+    font.setPointSize(fontSize);
     painter.setFont(font);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
@@ -112,12 +113,12 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(m_cXPos+ (m_cXPos - 10)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10
-                                 ,m_cYPos- (m_cXPos - 10)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10
-                                 ,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(m_cXPos+ (m_cXPos - 20)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            point.setY(m_cYPos- (m_cXPos - 20)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
         painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
@@ -156,12 +157,12 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
-                painter.drawText(m_cXPos+ (m_cYPos - 10 - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) -10
-                                 ,m_cYPos - (m_cYPos - 10 - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - 10
-                                 ,20,20, Qt::AlignCenter,QString::number(i/5));
+                painter.drawText(m_cXPos+ (m_cYPos - fontSize - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,m_cYPos - (m_cYPos - fontSize - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,2*fontSize ,2*fontSize , Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(m_cXPos + (m_cYPos - 20 - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            point.setY(m_cYPos - (m_cYPos - 20 - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setX(m_cXPos + (m_cYPos - 2*fontSize - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            point.setY(m_cYPos - (m_cYPos - 2*fontSize - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
             painter.drawEllipse(point,1,1);
         }
         painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_cYPos + m_cYPos/3,QDate::currentDate().toString());
