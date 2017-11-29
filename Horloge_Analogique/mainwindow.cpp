@@ -230,11 +230,12 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre = new ParamHeure(this);
+        nouvelleFenetre->setAttribute(Qt::WA_DeleteOnClose);
         nouvelleFenetre->show();
         break;
     case VALEUR_ACTION_AFFICHAGE:
         affichage = new Affichage(this);
-        nouvelleFenetre->setAttribute(Qt::WA_DeleteOnClose);
+        affichage->setAttribute(Qt::WA_DeleteOnClose);
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
@@ -273,6 +274,9 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_FERMER :
         this->close();
+        break;
+    case VALEUR_ACTION_PARAM_DEFAUT :
+        m_settings->clear();
         break;
     default:
         break;

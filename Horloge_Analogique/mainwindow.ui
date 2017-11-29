@@ -40,6 +40,7 @@
     <addaction name="actionAffichage_2"/>
     <addaction name="actionThemes"/>
     <addaction name="actionFermer"/>
+    <addaction name="actionParam_tres_par_d_faut"/>
    </widget>
    <widget class="QMenu" name="menuChronom_tre">
     <property name="title">
@@ -169,6 +170,11 @@
   <action name="actionFermer">
    <property name="text">
     <string>Fermer</string>
+   </property>
+  </action>
+  <action name="actionParam_tres_par_d_faut">
+   <property name="text">
+    <string>Paramètres par défaut</string>
    </property>
   </action>
  </widget>
