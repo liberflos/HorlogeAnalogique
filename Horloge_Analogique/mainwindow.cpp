@@ -9,10 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+//Récupération des settings
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
-    qDebug() << m_settings->value(HEURE_REVEILS);
+//Configuration de l'interface graphique
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setToolTip("Double-cliquer pour afficher/cacher les menus");
@@ -30,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_hYPos= 165 - 125*sin((PI/2) +(m_minutes*PI)/FRACTION_HEURES);
     m_timer = new QTimer(this);
     m_timer->setProperty("isSync", false);
-    connect(m_timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
+//Definitions des propriétés des actions du menu
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
     ui->actionAffichage_2->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_AFFICHAGE);
     ui->actionThemes->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_THEME);
@@ -41,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
     ui->actionFermer->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_FERMER);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
+    connect(m_timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
+//Demmarage de l'horloge
     m_timer->start(TIMER_DELAY - QTime::currentTime().msec());
 }//______________________________________________________________________________________________________Fin MainWindow
 
@@ -64,16 +67,15 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     for(int i = 0 ; i < m_listeMinuteurs.size(); i++){
         m_listeMinuteurs.at(i)->redessiner();
     }
-    QBrush brush;
-    m_couleur.setRgb(128,128,128);
-    brush.setStyle(Qt::SolidPattern);
-    brush.setColor(m_couleur);
-    QPainter painter(this);
-    painter.setBrush(brush);
-    QFont font;
     int fontSize = m_settings->value(TAILLE_TEXTE, 14).toInt();
-    font.setPointSize(fontSize);
-    painter.setFont(font);
+
+    QPainter painter(this);
+    m_couleur.setRgb(128,128,128);
+    m_brush.setStyle(Qt::SolidPattern);
+    m_brush.setColor(m_couleur);
+    painter.setBrush(m_brush);
+    m_font.setPointSize(fontSize);
+    painter.setFont(m_font);
     m_cXPos = this->width()/2;
     m_cYPos = this->height()/2 + ui->menuBar->height()/2;
     m_centre.setX(m_cXPos);
@@ -110,18 +112,17 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         m_couleur.setRgb(0,0,0);
         painter.setPen(m_couleur);
 
-        QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
                 painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
                                  ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
                                  ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-            painter.drawEllipse(point,1,1);
+            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            painter.drawEllipse(m_point,1,1);
         }
-        painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
+        painter.drawText(m_cXPos - (m_font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
 
     }else{
         m_sXPos= m_cXPos + (m_cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES);
@@ -154,21 +155,20 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         }
         m_couleur.setRgb(0,0,0);
         painter.setPen(m_couleur);
-        QPoint point;
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
                 painter.drawText(m_cXPos+ (m_cYPos - fontSize - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
                                  ,m_cYPos - (m_cYPos - fontSize - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
                                  ,2*fontSize ,2*fontSize , Qt::AlignCenter,QString::number(i/5));
             }
-            point.setX(m_cXPos + (m_cYPos - 2*fontSize - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            point.setY(m_cYPos - (m_cYPos - 2*fontSize - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-            painter.drawEllipse(point,1,1);
+            m_point.setX(m_cXPos + (m_cYPos - 2*fontSize - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            m_point.setY(m_cYPos - (m_cYPos - 2*fontSize - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            painter.drawEllipse(m_point,1,1);
         }
-        painter.drawText(m_cXPos - (font.pointSize()/3)*QDate::currentDate().toString().length() , m_cYPos + m_cYPos/3,QDate::currentDate().toString());
+        painter.drawText(m_cXPos - (m_font.pointSize()/3)*QDate::currentDate().toString().length() , m_cYPos + m_cYPos/3,QDate::currentDate().toString());
 
     }
-//    qDebug() << QDate::currentDate().toString().size() <<QDate::currentDate().toString().length() << ;
+    //    qDebug() << QDate::currentDate().toString().size() <<QDate::currentDate().toString().length() << ;
 }//______________________________________________________________________________________________________Fin paintEvent
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *)

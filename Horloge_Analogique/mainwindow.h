@@ -159,6 +159,19 @@ private:
      * @brief m_listeReveils
      */
     QList<Reveil*> m_listeReveils;
+    /**
+     * @brief m_brush
+     */
+    QBrush m_brush;
+    /**
+     * @brief m_font
+     */
+    QFont m_font;
+    /**
+     * @brief m_point
+     */
+    QPoint m_point;
+
 private slots:
     /**
      * @brief timerSlot
