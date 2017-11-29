@@ -218,93 +218,56 @@ void MainWindow::timerSlot()//__________________________________________________
 void MainWindow::menuAction(QAction *action)//_________________________________________________________Debut menuAction
 {
 
-    Chronometre *chrono = new Chronometre(this);
-    Minuteur *minuteur = new Minuteur(this);
-    Affichage *affichage = new Affichage(this);
-    Theme *theme = new Theme(this);
-    Reveil *reveil = new Reveil(this);
+    ParamHeure *nouvelleFenetre;
+    Affichage *affichage;
+    Theme *theme;
+    Chronometre *chrono;
+    Reveil *reveil;
+    Minuteur *minuteur;
 
-    chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),chrono->width(),chrono->height());
-    minuteur->setGeometry(this->width() - minuteur->width(),ui->menuBar->height() + (m_listeMinuteurs.size()*minuteur->height()),minuteur->width(),minuteur->height());
-    ParamHeure *nouvelleFenetre = new ParamHeure(this);
+
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
+        nouvelleFenetre = new ParamHeure(this);
         nouvelleFenetre->show();
-        reveil->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         break;
     case VALEUR_ACTION_AFFICHAGE:
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        theme->deleteLater();
+        affichage = new Affichage(this);
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
+        theme = new Theme(this);
         theme->show();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
+        chrono = new Chronometre(this);
+        chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),
+                            chrono->width(),chrono->height());
         m_listeChronometres.append(chrono);
+        qDebug() << chrono << " " << m_listeChronometres.last();
         connect(chrono,SIGNAL(closeSigC(int)),this, SLOT(MAJC(int)));
         chrono->setIndex(m_listeChronometres.size() - 1);
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
+        reveil = new Reveil(this);
         reveil->show();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         break;
     case VALEUR_ACTION_MES_REVEILS :
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
+        minuteur = new Minuteur(this);
+        minuteur->setGeometry(this->width() - minuteur->width(),
+                              ui->menuBar->height() + (m_listeMinuteurs.size()*minuteur->height()),
+                              minuteur->width(),minuteur->height());
         m_listeMinuteurs.append(minuteur);
         connect(minuteur,SIGNAL(closeSigM(int)),this, SLOT(MAJM(int)));
         minuteur->setIndex(m_listeMinuteurs.size() - 1);
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         minuteur->show();
         break;
     case VALEUR_ACTION_MES_MINUTEUR :
-        reveil->deleteLater();
-        nouvelleFenetre->deleteLater();
-        chrono->deleteLater();
-        minuteur->deleteLater();
-        affichage->deleteLater();
-        theme->deleteLater();
         break;
     case VALEUR_ACTION_FERMER :
         this->close();
