@@ -3,11 +3,14 @@
 
 #include <QDialog>
 #include <QSettings>
+#include <QFileDialog>
+#include <QErrorMessage>
 
 #define TYPE_HORLOGE "TypeHorloge"
 #define TAILLE_TEXTE "TailleTexte"
 #define FORME_AIGUILLE "FormeAiguille"
 #define TYPE_DE_FOND "TypeDeFond"
+#define PATH_IMAGE "PathImage"
 #define COULEUR_HEURE "CouleurHeure"
 #define COULEUR_MINUTE "CouleurMinute"
 #define COULEUR_SECONDE "CouleurSeconde"
@@ -47,6 +50,8 @@ private:
 private slots:
     void setTypeHorloge(int type);
     void confirmeSettings();
+    void setTypeFond(int index);
+    void selectImage();
 };
 
 #endif // AFFICHAGE_H
