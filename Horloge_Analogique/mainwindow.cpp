@@ -244,7 +244,6 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),
                             chrono->width(),chrono->height());
         m_listeChronometres.append(chrono);
-        qDebug() << chrono << " " << m_listeChronometres.last();
         connect(chrono,SIGNAL(closeSigC(int)),this, SLOT(MAJC(int)));
         chrono->setIndex(m_listeChronometres.size() - 1);
         chrono->show();
