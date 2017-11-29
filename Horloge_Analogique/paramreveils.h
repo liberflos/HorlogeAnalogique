@@ -23,6 +23,7 @@ public:
      * @param parent
      */
     explicit ParamReveils(QWidget *parent = 0);
+    explicit ParamReveils(int numberOReveil, QWidget *parent = 0);
     ~ParamReveils();
 
 private:
@@ -40,6 +41,7 @@ private slots:
      * @brief confirmeSettings
      */
     void confirmeSettings();
+    void confirmeToutSettings();
 };
 
 #endif // PARAMREVEILS_H

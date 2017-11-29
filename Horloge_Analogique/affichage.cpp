@@ -36,7 +36,6 @@ Affichage::Affichage(QWidget *parent) :
     connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
     connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
     connect(this, SIGNAL(accepted()), this, SLOT(confirmeSettings()));
-    connect(ui->comboBoxTypeHorloge, SIGNAL(activated(int)), this, SLOT(setTypeHorloge(int)));
     connect(ui->comboBoxTypeFond,SIGNAL(activated(int)),this, SLOT(setTypeFond(int)));
     connect(ui->toolButtonImageFond, SIGNAL(clicked(bool)), this, SLOT(selectImage()));
     connect(ui->pushButtonCouleurFond, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));

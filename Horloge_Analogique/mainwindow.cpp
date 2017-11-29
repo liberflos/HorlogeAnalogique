@@ -270,7 +270,9 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         m_listeReveils.append(reveilModel);
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
-        paramReveils = new ParamReveils(this);
+        paramReveils = new ParamReveils(m_settings->value(HEURE_REVEILS).toList().length(), this);
+        paramReveils->setAttribute(Qt::WA_DeleteOnClose);
+        paramReveils->exec();
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         minuteur = new Minuteur(this);

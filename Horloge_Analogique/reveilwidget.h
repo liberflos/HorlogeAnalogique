@@ -27,6 +27,8 @@ public:
      * @brief ReveilWidget
      */
     explicit ReveilWidget(QWidget *parent = 0);
+    explicit ReveilWidget(QString fichierAudio, QWidget *parent);
+    explicit ReveilWidget(QString temps, QString fichierAudio, QWidget *parent = 0);
     ~ReveilWidget();
     /**
      * @brief getFilePath
@@ -40,10 +42,6 @@ public:
     QTime getTemps();
 private:
     Ui::ReveilWidget *ui;
-    /**
-     * @brief m_settings
-     */
-    QSettings *m_settings;
     /**
      * @brief m_filePath
      */
