@@ -81,6 +81,9 @@ private slots:
      * @brief selectImage
      */
     void selectImage();
+    /**
+     * @brief selectCouleur
+     */
     void selectCouleur();
 };
 

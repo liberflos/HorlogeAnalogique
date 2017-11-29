@@ -28,7 +28,15 @@ public:
      */
     explicit ReveilWidget(QWidget *parent = 0);
     ~ReveilWidget();
+    /**
+     * @brief getFilePath
+     * @return
+     */
     QString getFilePath();
+    /**
+     * @brief getTemps
+     * @return
+     */
     QTime getTemps();
 private:
     Ui::ReveilWidget *ui;
@@ -36,7 +44,13 @@ private:
      * @brief m_settings
      */
     QSettings *m_settings;
+    /**
+     * @brief m_filePath
+     */
     QString m_filePath;
+    /**
+     * @brief m_temps
+     */
     QTime m_temps;
 private slots:
     /**
@@ -47,6 +61,10 @@ private slots:
      * @brief checkTheState
      */
     void checkTheState();
+    /**
+     * @brief setTemps
+     * @param temps
+     */
     void setTemps(QTime temps);
 };
 

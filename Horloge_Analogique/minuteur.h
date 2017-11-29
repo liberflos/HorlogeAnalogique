@@ -77,6 +77,9 @@ private:
      * @brief m_temps
      */
     QTime m_temps;
+    /**
+     * @brief m_player
+     */
     QMediaPlayer *m_player;
 
 private slots:
