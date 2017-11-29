@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QSettings>
 #include <QFileDialog>
+#include <QErrorMessage>
 
 #define PATH_AUDIO "PathAudio"
 #define HEURE_REVEILS "HeureReveils"

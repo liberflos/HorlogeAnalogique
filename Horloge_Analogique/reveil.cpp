@@ -64,12 +64,12 @@ void Reveil::selectSonnerie()
     QFileDialog *dialFichier = new QFileDialog(this);
     QString filePath;
     filePath = dialFichier->getOpenFileName();
-//    if(filePath.endsWith(".jpg") || filePath.endsWith(".png") ||
+    if(filePath.endsWith(".wav") || filePath.endsWith(".mp3")){
 //            filePath.endsWith(".JPEG") || filePath.endsWith(".bmp")){
         ui->lineEditFilePath->setText(filePath);
-//    }else {
-//        QErrorMessage *message = new QErrorMessage(this);
-//        message->setWindowTitle("Erreur d'Extension");
-//        message->showMessage("le fichier selectionné n'est pas une image, ou l'extension n'est pas prise en charge.");
-//    }
+    }else {
+        QErrorMessage *message = new QErrorMessage(this);
+        message->setWindowTitle("Erreur d'Extension");
+        message->showMessage("le fichier selectionné n'est pas une image, ou l'extension n'est pas prise en charge.");
+    }
 }
