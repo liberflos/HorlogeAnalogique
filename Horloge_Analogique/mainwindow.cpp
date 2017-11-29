@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
+    qDebug() << m_settings->value(HEURE_REVEILS);
 //Configuration de l'interface graphique
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -41,10 +42,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionNouveau_Minuteur->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_MINUTEUR);
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
     ui->actionFermer->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_FERMER);
+    ui->actionParam_tres_par_d_faut->setProperty(PROPRIETE_ACTION_MENU, VALEUR_ACTION_PARAM_DEFAUT);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
     connect(m_timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
 //Demmarage de l'horloge
     m_timer->start(TIMER_DELAY - QTime::currentTime().msec());
+//Création des réveils
+    QList<QVariant> listeReveils;
+    listeReveils.append(m_settings->value(HEURE_REVEILS).toList());
+    for(int i = 0 ; i < listeReveils.length() ; i++){
+        ReveilModel *reveilModel = new ReveilModel(m_settings->value(HEURE_REVEILS).toList().at(i).toString(),
+                                     m_settings->value(PATH_AUDIO).toString(),this);
+        m_listeReveils.append(reveilModel);
+    }
 }//______________________________________________________________________________________________________Fin MainWindow
 
 MainWindow::~MainWindow()
@@ -69,7 +79,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     }
     int fontSize = m_settings->value(TAILLE_TEXTE, 14).toInt();
 
-    qDebug() << m_settings->value(COULEUR_FOND);
     QPainter painter(this);
     m_couleur.setRgba(m_settings->value(COULEUR_FOND, 0).toInt());
     m_brush.setStyle(Qt::SolidPattern);
@@ -169,7 +178,6 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         painter.drawText(m_cXPos - (m_font.pointSize()/3)*QDate::currentDate().toString().length() , m_cYPos + m_cYPos/3,QDate::currentDate().toString());
 
     }
-    //    qDebug() << QDate::currentDate().toString().size() <<QDate::currentDate().toString().length() << ;
 }//______________________________________________________________________________________________________Fin paintEvent
 
 void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
@@ -223,7 +231,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Affichage *affichage;
     Theme *theme;
     Chronometre *chrono;
-    Reveil *reveil;
+    ReveilModel *reveilModel;
     Minuteur *minuteur;
     ParamReveils *paramReveils;
 
@@ -254,9 +262,12 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
-        reveil = new Reveil();
-        m_listeReveils.append(reveil);
-        reveil->show();
+        paramReveils = new ParamReveils(this);
+        paramReveils->setAttribute(Qt::WA_DeleteOnClose);
+        paramReveils->exec();
+        reveilModel= new ReveilModel(m_settings->value(HEURE_REVEILS).toList().last().toString(),
+                                     m_settings->value(PATH_AUDIO).toString(),this);
+        m_listeReveils.append(reveilModel);
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
         paramReveils = new ParamReveils(this);
@@ -278,6 +289,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_PARAM_DEFAUT :
         m_settings->clear();
+        qDebug() << "settings cleared";
         break;
     default:
         break;

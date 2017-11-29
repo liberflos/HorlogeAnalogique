@@ -2,6 +2,10 @@
 #define PARAMREVEILS_H
 
 #include <QDialog>
+#include <QList>
+#include <QDialogButtonBox>
+
+#include "reveilwidget.h"
 
 namespace Ui {
 class ParamReveils;
@@ -23,6 +27,19 @@ public:
 
 private:
     Ui::ParamReveils *ui;
+    /**
+     * @brief m_settings
+     */
+    QSettings *m_settings;
+    /**
+     * @brief m_listeReveils
+     */
+    QList<ReveilWidget*> m_listeReveils;
+private slots:
+    /**
+     * @brief confirmeSettings
+     */
+    void confirmeSettings();
 };
 
 #endif // PARAMREVEILS_H
