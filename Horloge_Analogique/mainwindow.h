@@ -32,13 +32,12 @@
 #define FRACTION_HEURES 360
 #define TIMER_DELAY 1000
 #define PROPRIETE_ACTION_MENU "propriete_action_menu"
-#define VALEUR_ACTION_FERMER 10
-#define VALEUR_ACTION_PARAMETRE_HEURE 1
-#define VALEUR_ACTION_AFFICHAGE 2
-#define VALEUR_ACTION_THEME 3
-#define VALEUR_ACTION_NOUVEAU_CHRONO 4
-#define VALEUR_ACTION_NOUVEAU_REVEIL 5
-#define VALEUR_ACTION_MES_REVEILS 6
+#define VALEUR_ACTION_FERMER 1
+#define VALEUR_ACTION_PARAMETRE_HEURE 2
+#define VALEUR_ACTION_AFFICHAGE 3
+#define VALEUR_ACTION_THEME 4
+#define VALEUR_ACTION_NOUVEAU_CHRONO 5
+#define VALEUR_ACTION_NOUVEAU_REVEIL 6
 #define VALEUR_ACTION_PARAMETRE_REVEIL 7
 #define VALEUR_ACTION_NOUVEAU_MINUTEUR 8
 #define VALEUR_ACTION_MES_MINUTEUR 9
@@ -146,6 +145,7 @@ private:
      */
     QList<Chronometre*> m_listeChronometres;
     QSettings *m_settings;
+    QList<Reveil*> m_listeReveils;
 private slots:
     /**
      * @brief timerSlot

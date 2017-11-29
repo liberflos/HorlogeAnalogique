@@ -52,7 +52,6 @@
      <string>Réveil</string>
     </property>
     <addaction name="actionNouveau_Reveil"/>
-    <addaction name="actionMes_Reveils"/>
     <addaction name="actionParametresReveils"/>
    </widget>
    <widget class="QMenu" name="menuMinuteur">

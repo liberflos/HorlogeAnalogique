@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
+    qDebug() << m_settings->value(HEURE_REVEILS);
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setToolTip("Double-cliquer pour afficher/cacher les menus");
@@ -35,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionThemes->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_THEME);
     ui->actionNouveau_Chronometre->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_CHRONO);
     ui->actionNouveau_Reveil->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_REVEIL);
-    ui->actionMes_Reveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_REVEILS);
     ui->actionParametresReveils->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_REVEIL);
     ui->actionNouveau_Minuteur->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_NOUVEAU_MINUTEUR);
     ui->actionMes_Minuteurs->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_MES_MINUTEUR);
@@ -224,6 +224,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     Chronometre *chrono;
     Reveil *reveil;
     Minuteur *minuteur;
+    ParamReveils *paramReveils;
 
 
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
@@ -233,6 +234,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_AFFICHAGE:
         affichage = new Affichage(this);
+        nouvelleFenetre->setAttribute(Qt::WA_DeleteOnClose);
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
@@ -241,6 +243,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
         chrono = new Chronometre(this);
+        chrono->setAttribute(Qt::WA_DeleteOnClose);
         chrono->setGeometry(0,ui->menuBar->height() + (m_listeChronometres.size()*chrono->height()),
                             chrono->width(),chrono->height());
         m_listeChronometres.append(chrono);
@@ -249,12 +252,12 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         chrono->show();
         break;
     case VALEUR_ACTION_NOUVEAU_REVEIL :
-        reveil = new Reveil(this);
+        reveil = new Reveil();
+        m_listeReveils.append(reveil);
         reveil->show();
         break;
-    case VALEUR_ACTION_MES_REVEILS :
-        break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
+        paramReveils = new ParamReveils(this);
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         minuteur = new Minuteur(this);
