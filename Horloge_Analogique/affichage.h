@@ -13,6 +13,8 @@
 #define COULEUR_SECONDE "CouleurSeconde"
 #define COULEUR_TEXTE "CouleurTexte"
 #define TRANSPARENCE "Transparence"
+#define FORMEAIGUILLE "FormeAiguille"
+
 namespace Ui {
 class Affichage;
 }

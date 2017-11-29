@@ -11,7 +11,6 @@ Reveil::Reveil(QWidget *parent) :
     this->setMinimumWidth(ui->horizontalLayout_2->minimumSize().width() + 20);
     m_timer = new QTimer(this);
     m_timer->setInterval(10000);
-    m_timer->start();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(lancerSonnerie()));
 }
 

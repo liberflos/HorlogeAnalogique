@@ -7,131 +7,139 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>329</height>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelTypeHorloge">
-       <property name="text">
-        <string>Type de l'horloge</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxTypeHorloge"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelFormeAiguilles">
-       <property name="text">
-        <string>Forme des aiguilles</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="comboBoxFormeAiguille"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="comboBoxTypeFond"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="labelCouleurAiguilles">
-       <property name="text">
-        <string>Couleurs des aiguilles</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelCouleurTextes">
-       <property name="text">
-        <string>Couleur des textes</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="labelCouleurFond">
-       <property name="text">
-        <string>Couleur du fond</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QPushButton" name="pushButton_3">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="labelImageFond">
-       <property name="text">
-        <string>Image du fond</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLabel" name="labelTypeHorloge">
+         <property name="text">
+          <string>Type de l'horloge</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="toolButton">
+        <widget class="QLabel" name="labelFormeAiguilles">
          <property name="text">
-          <string>...</string>
+          <string>Forme des aiguilles</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelTypeFond">
+         <property name="text">
+          <string>Type de fond</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelImageFond">
+         <property name="text">
+          <string>Image du fond</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCouleurFond">
+         <property name="text">
+          <string>Couleur du fond</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCouleurAiguilles">
+         <property name="text">
+          <string>Couleurs des aiguilles</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelCouleurTextes">
+         <property name="text">
+          <string>Couleur des textes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Taille du Texte</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelTransparenceFond">
+         <property name="text">
+          <string>Transparence du fond</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="labelTransparenceFond">
-       <property name="text">
-        <string>Transparence du fond</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QSpinBox" name="spinBoxTranspFond"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelTypeFond">
-       <property name="text">
-        <string>Type de fond</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Taille du Texte</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QSpinBox" name="spinBoxTailleTexte">
-       <property name="value">
-        <number>14</number>
-       </property>
-      </widget>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QComboBox" name="comboBoxTypeHorloge"/>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxFormeAiguille"/>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxTypeFond"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBoxTailleTexte">
+         <property name="value">
+          <number>14</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="spinBoxTranspFond"/>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
