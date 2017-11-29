@@ -2,6 +2,7 @@
 #include "ui_affichage.h"
 #include <QSettings>
 #include <QDebug>
+#include <QColorDialog>
 
 Affichage::Affichage(QWidget *parent) :
     QDialog(parent),
@@ -15,8 +16,14 @@ Affichage::Affichage(QWidget *parent) :
     ui->comboBoxTypeHorloge->setCurrentIndex(m_settings->value(TYPE_HORLOGE, 0).toInt());
     ui->comboBoxTypeFond->addItem("Image");
     ui->comboBoxTypeFond->addItem("Couleur");
+    ui->comboBoxTypeFond->setCurrentIndex(m_settings->value(TYPE_DE_FOND).toInt());
     ui->spinBoxTailleTexte->setValue(m_settings->value(TAILLE_TEXTE, 14).toInt());
     ui->lineEditImageFond->setText(m_settings->value(PATH_IMAGE, "").toString());
+
+    QColor couleurbp;
+    couleurbp.setRgba(m_settings->value(COULEUR_FOND).toInt());
+    QString qss = QString("background-color: %1").arg(couleurbp.name());
+    ui->pushButtonCouleurFond->setStyleSheet(qss);
 
     if(ui->comboBoxTypeFond->currentIndex() == 0){
         ui->labelCouleurFond->hide();
@@ -26,13 +33,15 @@ Affichage::Affichage(QWidget *parent) :
         ui->lineEditImageFond->hide();
         ui->toolButtonImageFond->hide();
     }
-
     connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
     connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
     connect(this, SIGNAL(accepted()), this, SLOT(confirmeSettings()));
     connect(ui->comboBoxTypeHorloge, SIGNAL(activated(int)), this, SLOT(setTypeHorloge(int)));
     connect(ui->comboBoxTypeFond,SIGNAL(activated(int)),this, SLOT(setTypeFond(int)));
     connect(ui->toolButtonImageFond, SIGNAL(clicked(bool)), this, SLOT(selectImage()));
+    connect(ui->pushButtonCouleurFond, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
+    connect(ui->pushButtonCouleurAiguilles, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
+    connect(ui->pushButtonCouleurTextes, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
 }
 
 Affichage::~Affichage()
@@ -40,16 +49,13 @@ Affichage::~Affichage()
     delete ui;
 }
 
-void Affichage::setTypeHorloge(int type)
-{
-    m_typeHorlogeTMP = type;
-}
 
 void Affichage::confirmeSettings()
 {
     m_settings->setValue(TYPE_HORLOGE, ui->comboBoxTypeHorloge->currentIndex());
     m_settings->setValue(FORME_AIGUILLE, ui->comboBoxFormeAiguille->currentIndex());
     m_settings->setValue(TYPE_DE_FOND, ui->comboBoxTypeFond->currentIndex());
+    m_settings->setValue(COULEUR_FOND, m_couleurFondTMP);
     m_settings->setValue(COULEUR_HEURE, m_couleurHeureTMP);
     m_settings->setValue(COULEUR_MINUTE, m_couleurMinuteTMP);
     m_settings->setValue(COULEUR_SECONDE, m_couleurSecondeTMP);
@@ -90,4 +96,13 @@ void Affichage::selectImage()
         message->setWindowTitle("Erreur d'Extension");
         message->showMessage("le fichier selectionné n'est pas une image, ou l'extension n'est pas prise en charge.");
     }
+}
+
+void Affichage::selectCouleur()
+{
+    QColorDialog *dialogCouleur= new QColorDialog(this);
+    dialogCouleur->exec();
+    QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
+    ui->pushButtonCouleurFond->setStyleSheet(qss);
+    m_couleurFondTMP = dialogCouleur->selectedColor().rgba();
 }

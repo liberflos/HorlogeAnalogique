@@ -11,6 +11,7 @@
 #define FORME_AIGUILLE "FormeAiguille"
 #define TYPE_DE_FOND "TypeDeFond"
 #define PATH_IMAGE "PathImage"
+#define COULEUR_FOND "CouleurFond"
 #define COULEUR_HEURE "CouleurHeure"
 #define COULEUR_MINUTE "CouleurMinute"
 #define COULEUR_SECONDE "CouleurSeconde"
@@ -43,17 +44,9 @@ private:
      */
     QSettings *m_settings;
     /**
-     * @brief m_typeHorlogeTMP
+     * @brief m_couleurFondTMP
      */
-    int m_typeHorlogeTMP;
-    /**
-     * @brief m_formeAiguilleTMP
-     */
-    int m_formeAiguilleTMP;
-    /**
-     * @brief m_typeDeFondTMP
-     */
-    int m_typeDeFondTMP;
+    unsigned int m_couleurFondTMP;
     /**
      * @brief m_couleurHeureTMP
      */
@@ -76,11 +69,6 @@ private:
     int m_transparenceTMP;
 private slots:
     /**
-     * @brief setTypeHorloge
-     * @param type
-     */
-    void setTypeHorloge(int type);
-    /**
      * @brief confirmeSettings
      */
     void confirmeSettings();
@@ -93,6 +81,7 @@ private slots:
      * @brief selectImage
      */
     void selectImage();
+    void selectCouleur();
 };
 
 #endif // AFFICHAGE_H

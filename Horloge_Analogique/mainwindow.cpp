@@ -69,8 +69,9 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
     }
     int fontSize = m_settings->value(TAILLE_TEXTE, 14).toInt();
 
+    qDebug() << m_settings->value(COULEUR_FOND);
     QPainter painter(this);
-    m_couleur.setRgb(128,128,128);
+    m_couleur.setRgba(m_settings->value(COULEUR_FOND, 0).toInt());
     m_brush.setStyle(Qt::SolidPattern);
     m_brush.setColor(m_couleur);
     painter.setBrush(m_brush);
