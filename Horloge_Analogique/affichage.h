@@ -38,19 +38,60 @@ public:
 
 private:
     Ui::Affichage *ui;
+    /**
+     * @brief m_settings
+     */
     QSettings *m_settings;
+    /**
+     * @brief m_typeHorlogeTMP
+     */
     int m_typeHorlogeTMP;
+    /**
+     * @brief m_formeAiguilleTMP
+     */
     int m_formeAiguilleTMP;
+    /**
+     * @brief m_typeDeFondTMP
+     */
     int m_typeDeFondTMP;
+    /**
+     * @brief m_couleurHeureTMP
+     */
     int m_couleurHeureTMP;
+    /**
+     * @brief m_couleurMinuteTMP
+     */
     int m_couleurMinuteTMP;
+    /**
+     * @brief m_couleurSecondeTMP
+     */
     int m_couleurSecondeTMP;
+    /**
+     * @brief m_couleurTexteTMP
+     */
     int m_couleurTexteTMP;
+    /**
+     * @brief m_transparenceTMP
+     */
     int m_transparenceTMP;
 private slots:
+    /**
+     * @brief setTypeHorloge
+     * @param type
+     */
     void setTypeHorloge(int type);
+    /**
+     * @brief confirmeSettings
+     */
     void confirmeSettings();
+    /**
+     * @brief setTypeFond
+     * @param index
+     */
     void setTypeFond(int index);
+    /**
+     * @brief selectImage
+     */
     void selectImage();
 };
 

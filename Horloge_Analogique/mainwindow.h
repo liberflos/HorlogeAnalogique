@@ -69,6 +69,9 @@ public:
      * @brief paintEvent
      */
     void paintEvent(QPaintEvent *);
+    /**
+     * @brief mouseDoubleClickEvent
+     */
     void mouseDoubleClickEvent(QMouseEvent *);
 private:
     Ui::MainWindow *ui;
@@ -128,6 +131,9 @@ private:
      * @brief timer
      */
     QTimer *m_timer;
+    /**
+     * @brief m_timerShowFrame
+     */
     QTimer *m_timerShowFrame;
     /**
      * @brief m_nbChrono
@@ -145,7 +151,13 @@ private:
      * @brief m_listeChronometres
      */
     QList<Chronometre*> m_listeChronometres;
+    /**
+     * @brief m_settings
+     */
     QSettings *m_settings;
+    /**
+     * @brief m_listeReveils
+     */
     QList<Reveil*> m_listeReveils;
 private slots:
     /**
