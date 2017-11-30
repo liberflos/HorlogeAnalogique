@@ -28,5 +28,10 @@ Dans les menus:
         ->implementer sauvegarde des minuteurs
 
 Tache de fond :
-        - Implementer l'execution automatique de l'application au demmarage de l'ordinateur, automatiser la configuration ( e.g.
-    premiere execution -> creation d'un fichier ini)
+        - Implementer l'execution automatique de l'application au demmarage de l'ordinateur,
+    automatiser la configuration ( e.g.premiere execution -> creation d'un fichier ini)
+        - Corriger la transparence en mode fenetre (rendre opaque ou d'opacite configuree dans les settings)
+
+Fonctionnalites a ajouter :
+        - choix de garder l'application en premier plan ou non
+        -
