@@ -2,7 +2,11 @@
 #define THEME_H
 
 #include <QDialog>
+#include <QSettings>
 
+#define STYLE_HORLOGE "StyleHorloge"
+#define THEME_HORLOGE "ThemeHorloge"
+#define TYPE_CHRONO "TypeChrono"
 namespace Ui {
 class Theme;
 }
@@ -23,6 +27,12 @@ public:
 
 private:
     Ui::Theme *ui;
+    QSettings *m_settings;
+private slots:
+    /**
+     * @brief confirmeSettings
+     */
+    void confirmeSettings();
 };
 
 #endif // THEME_H

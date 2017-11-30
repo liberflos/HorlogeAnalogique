@@ -74,6 +74,11 @@ public:
      * @brief mouseDoubleClickEvent
      */
     void mouseDoubleClickEvent(QMouseEvent *);
+    /**
+     * @brief painterThemeNum
+     * @param painter
+     * @param fontSize
+     */
     void painterThemeNum(QPainter &painter, int fontSize);
 private:
     Ui::MainWindow *ui;
@@ -173,6 +178,7 @@ private:
      * @brief m_point
      */
     QPoint m_point;
+    QStringList m_listeHeures;
 
 private slots:
     /**
@@ -194,6 +200,11 @@ private slots:
      * @param index
      */
     void MAJM(int index);
+    /**
+     * @brief settingsModifie
+     */
+    void settingsModifie();
+
 };
 
 #endif // MAINWINDOW_H

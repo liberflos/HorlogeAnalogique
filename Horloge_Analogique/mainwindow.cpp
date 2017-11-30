@@ -14,6 +14,41 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
     qDebug() << m_settings->value(HEURE_REVEILS);
+    qDebug() << m_settings->value(STYLE_HORLOGE);
+    switch (m_settings->value(STYLE_HORLOGE).toInt()) {
+    case 0:
+        m_listeHeures.append("1");
+        m_listeHeures.append("2");
+        m_listeHeures.append("3");
+        m_listeHeures.append("4");
+        m_listeHeures.append("5");
+        m_listeHeures.append("6");
+        m_listeHeures.append("7");
+        m_listeHeures.append("8");
+        m_listeHeures.append("9");
+        m_listeHeures.append("10");
+        m_listeHeures.append("11");
+        m_listeHeures.append("12");
+
+        break;
+    case 1:
+        m_listeHeures.append("I");
+        m_listeHeures.append("II");
+        m_listeHeures.append("III");
+        m_listeHeures.append("IV");
+        m_listeHeures.append("V");
+        m_listeHeures.append("VI");
+        m_listeHeures.append("VII");
+        m_listeHeures.append("VIII");
+        m_listeHeures.append("IX");
+        m_listeHeures.append("X");
+        m_listeHeures.append("XI");
+        m_listeHeures.append("XII");
+
+        break;
+    default:
+        break;
+    }
 //Configuration de l'interface graphique
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -122,7 +157,16 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         m_couleur.setRgb(0,0,0);
         painter.setPen(m_couleur);
 
-        painterThemeNum(painter, fontSize);
+        for(int i = 1 ; i <= 60 ; i++){
+            if(i%5 == 0){
+                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,m_listeHeures.at(i/5 -1));
+            }
+            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            painter.drawEllipse(m_point,1,1);
+        }
         painter.drawText(m_cXPos - (m_font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
 
     }else{
@@ -160,7 +204,7 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
             if(i%5 == 0){
                 painter.drawText(m_cXPos+ (m_cYPos - fontSize - ui->menuBar->height())*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
                                  ,m_cYPos - (m_cYPos - fontSize - ui->menuBar->height())*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,2*fontSize ,2*fontSize , Qt::AlignCenter,QString::number(i/5));
+                                 ,2*fontSize ,2*fontSize , Qt::AlignCenter,m_listeHeures.at(i/5 - 1));
             }
             m_point.setX(m_cXPos + (m_cYPos - 2*fontSize - ui->menuBar->height() )*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
             m_point.setY(m_cYPos - (m_cYPos - 2*fontSize - ui->menuBar->height() )*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
@@ -185,26 +229,47 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
-void MainWindow::painterThemeNum(QPainter &painter, int fontSize)
-{
-//    if(){
-
-//    }
-    for(int i = 1 ; i <= 60 ; i++){
-        if(i%5 == 0){
-            painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                             ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                             ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
-        }
-        m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-        m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-        painter.drawEllipse(m_point,1,1);
-    }
-}
 
 //*********************************************************************************************************************
 //**********************************************METHODES PUBLIQUES*****************************************************
 //*********************************************************************************************************************
+
+void MainWindow::painterThemeNum(QPainter &painter, int fontSize)
+{
+
+    QStringList liste;
+    switch (m_settings->value(STYLE_HORLOGE).toInt()) {
+    case 0:
+        for(int i = 1 ; i <= 60 ; i++){
+            if(i%5 == 0){
+                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
+            }
+            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            painter.drawEllipse(m_point,1,1);
+        }
+
+        break;
+    case 1:
+
+        break;
+    default:
+        for(int i = 1 ; i <= 60 ; i++){
+            if(i%5 == 0){
+                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
+            }
+            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+            painter.drawEllipse(m_point,1,1);
+        }
+        break;
+    }
+}
+
 
 //*********************************************************************************************************************
 //**************************************************SLOTS PRIVES*******************************************************
@@ -248,15 +313,19 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre = new ParamHeure(this);
         nouvelleFenetre->setAttribute(Qt::WA_DeleteOnClose);
+        connect(nouvelleFenetre,SIGNAL(accepted()),this, SLOT(settingsModifie()));
         nouvelleFenetre->show();
         break;
     case VALEUR_ACTION_AFFICHAGE:
         affichage = new Affichage(this);
         affichage->setAttribute(Qt::WA_DeleteOnClose);
+        connect(affichage,SIGNAL(accepted()),this, SLOT(settingsModifie()));
         affichage->show();
         break;
     case VALEUR_ACTION_THEME :
         theme = new Theme(this);
+        theme->setAttribute(Qt::WA_DeleteOnClose);
+        connect(theme,SIGNAL(accepted()),this, SLOT(settingsModifie()));
         theme->show();
         break;
     case VALEUR_ACTION_NOUVEAU_CHRONO :
@@ -272,15 +341,19 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     case VALEUR_ACTION_NOUVEAU_REVEIL :
         paramReveils = new ParamReveils(this);
         paramReveils->setAttribute(Qt::WA_DeleteOnClose);
-        paramReveils->exec();
-        reveilModel= new ReveilModel(m_settings->value(HEURE_REVEILS).toList().last().toString(),
-                                     m_settings->value(PATH_AUDIO).toString(),this);
-        m_listeReveils.append(reveilModel);
+        if(paramReveils->exec()){
+            reveilModel= new ReveilModel(m_settings->value(HEURE_REVEILS).toList().last().toString(),
+                                         m_settings->value(PATH_AUDIO).toString(),this);
+            m_listeReveils.append(reveilModel);
+            settingsModifie();
+        }
         break;
     case VALEUR_ACTION_PARAMETRE_REVEIL :
         paramReveils = new ParamReveils(m_settings->value(HEURE_REVEILS).toList().length(), this);
         paramReveils->setAttribute(Qt::WA_DeleteOnClose);
-        paramReveils->exec();
+        if(paramReveils->exec()){
+            settingsModifie();
+        }
         break;
     case VALEUR_ACTION_NOUVEAU_MINUTEUR :
         minuteur = new Minuteur(this);
@@ -299,6 +372,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
         break;
     case VALEUR_ACTION_PARAM_DEFAUT :
         m_settings->clear();
+        settingsModifie();
         qDebug() << "settings cleared";
         break;
     default:
@@ -322,4 +396,44 @@ void MainWindow::MAJM(int index)
         m_listeMinuteurs.at(i)->deplacer();
         m_listeMinuteurs.at(i)->setIndex(i);
     }
+}
+
+void MainWindow::settingsModifie()
+{
+    m_listeHeures.clear();
+    switch (m_settings->value(STYLE_HORLOGE).toInt()) {
+    case 0:
+        m_listeHeures.append("1");
+        m_listeHeures.append("2");
+        m_listeHeures.append("3");
+        m_listeHeures.append("4");
+        m_listeHeures.append("5");
+        m_listeHeures.append("6");
+        m_listeHeures.append("7");
+        m_listeHeures.append("8");
+        m_listeHeures.append("9");
+        m_listeHeures.append("10");
+        m_listeHeures.append("11");
+        m_listeHeures.append("12");
+
+        break;
+    case 1:
+        m_listeHeures.append("I");
+        m_listeHeures.append("II");
+        m_listeHeures.append("III");
+        m_listeHeures.append("IV");
+        m_listeHeures.append("V");
+        m_listeHeures.append("VI");
+        m_listeHeures.append("VII");
+        m_listeHeures.append("VIII");
+        m_listeHeures.append("IX");
+        m_listeHeures.append("X");
+        m_listeHeures.append("XI");
+        m_listeHeures.append("XII");
+
+        break;
+    default:
+        break;
+    }
+
 }
