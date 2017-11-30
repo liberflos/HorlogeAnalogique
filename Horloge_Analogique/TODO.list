@@ -1,6 +1,32 @@
-Implementer l'enregistrement des parametres:
-    Langue, fuseau horaire, heure, minuteur personnels
-Implementer l'option reveil: prise en charge audio, implementation de l'event
-Implementer la configuration graphique:
-    type d'horloge, couleurs(des aiguilles, du texte, transparence du fond), type de fond(image ou couleur)
-Implementer l'execution automatique de l'application au demmarage de l'ordinateur, automatiser la configuration ( e.g. premiere execution -> creation d'un fichier ini)
+Dans les menus:
+    Options :
+        ->Parametre de l'heure :
+                - connecter langue
+                - connecter edit-date
+                - connecter edit-time
+        ->Affichage :
+                - implementer type numerique
+                - connecter type horloge
+                - implementer forme traits
+                - connecter forme aiguilles
+                - implementer fond image
+                - connecter transparence
+        ->Theme :
+                - implementer et connecter binaire
+                - implementer et connecter hexadecimal
+                - implementer et connecter old school
+                - implementer et connecter matrix
+                - implementer et connecter 8 bits
+                - implementer et connecter type chrono analogique
+                - implementer et connecter type chrono numerique
+    Reveil :
+        ->nouveau-reveil :
+                - implementer et connecter jours-de-la-semaines
+                - implementer et connecter repetition
+                - implementer et connecter niveau du volume
+    Minuteur :
+        ->implementer sauvegarde des minuteurs
+
+Tache de fond :
+        - Implementer l'execution automatique de l'application au demmarage de l'ordinateur, automatiser la configuration ( e.g.
+    premiere execution -> creation d'un fichier ini)
