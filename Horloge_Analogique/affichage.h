@@ -82,9 +82,13 @@ private slots:
      */
     void selectImage();
     /**
-     * @brief selectCouleur
+     * @brief selectCouleurFond
      */
-    void selectCouleur();
+    void selectCouleurFond();
+    void selectCouleurTexte();
+    void selectCouleurHeure();
+    void selectCouleurMinute();
+    void selectCouleurSeconde();
 };
 
 #endif // AFFICHAGE_H

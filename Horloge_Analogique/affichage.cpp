@@ -40,9 +40,11 @@ Affichage::Affichage(QWidget *parent) :
     connect(this, SIGNAL(accepted()), this, SLOT(confirmeSettings()));
     connect(ui->comboBoxTypeFond,SIGNAL(activated(int)),this, SLOT(setTypeFond(int)));
     connect(ui->toolButtonImageFond, SIGNAL(clicked(bool)), this, SLOT(selectImage()));
-    connect(ui->pushButtonCouleurFond, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
-    connect(ui->pushButtonCouleurAiguilles, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
-    connect(ui->pushButtonCouleurTextes, SIGNAL(clicked(bool)), this,SLOT(selectCouleur()));
+    connect(ui->pushButtonCouleurFond, SIGNAL(clicked(bool)), this,SLOT(selectCouleurFond()));
+    connect(ui->pushButtonCouleurHeure, SIGNAL(clicked(bool)), this,SLOT(selectCouleurHeure()));
+    connect(ui->pushButtonCouleurMinute, SIGNAL(clicked(bool)), this,SLOT(selectCouleurMinute()));
+    connect(ui->pushButtonCouleurSeconde, SIGNAL(clicked(bool)), this,SLOT(selectCouleurSeconde()));
+    connect(ui->pushButtonCouleurTextes, SIGNAL(clicked(bool)), this,SLOT(selectCouleurTexte()));
 }
 
 Affichage::~Affichage()
@@ -99,11 +101,52 @@ void Affichage::selectImage()
     }
 }
 
-void Affichage::selectCouleur()
+
+void Affichage::selectCouleurFond()
 {
     QColorDialog *dialogCouleur= new QColorDialog(this);
     dialogCouleur->exec();
     QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
     ui->pushButtonCouleurFond->setStyleSheet(qss);
     m_couleurFondTMP = dialogCouleur->selectedColor().rgba();
+}
+
+void Affichage::selectCouleurTexte()
+{
+    QColorDialog *dialogCouleur= new QColorDialog(this);
+    dialogCouleur->exec();
+    QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
+    ui->pushButtonCouleurTextes->setStyleSheet(qss);
+    m_couleurTexteTMP = dialogCouleur->selectedColor().rgba();
+
+}
+
+void Affichage::selectCouleurHeure()
+{
+    QColorDialog *dialogCouleur= new QColorDialog(this);
+    dialogCouleur->exec();
+    QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
+    ui->pushButtonCouleurHeure->setStyleSheet(qss);
+    m_couleurHeureTMP = dialogCouleur->selectedColor().rgba();
+
+}
+
+void Affichage::selectCouleurMinute()
+{
+    QColorDialog *dialogCouleur= new QColorDialog(this);
+    dialogCouleur->exec();
+    QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
+    ui->pushButtonCouleurMinute->setStyleSheet(qss);
+    m_couleurMinuteTMP = dialogCouleur->selectedColor().rgba();
+
+}
+
+void Affichage::selectCouleurSeconde()
+{
+    QColorDialog *dialogCouleur= new QColorDialog(this);
+    dialogCouleur->exec();
+    QString qss = QString("background-color: %1").arg(dialogCouleur->selectedColor().name());
+    ui->pushButtonCouleurSeconde->setStyleSheet(qss);
+    m_couleurSecondeTMP = dialogCouleur->selectedColor().rgba();
+
 }

@@ -133,14 +133,14 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         m_hXPos= m_cXPos+ (m_cXPos - DECALAGE)*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         m_hYPos= m_cYPos- (m_cXPos - DECALAGE)*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         painter.drawEllipse(m_centre,m_cXPos,m_cXPos);
-        m_couleur.setRgb(0,0,255);
+        m_couleur.setRgba(m_settings->value(COULEUR_HEURE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 600 ; i++){
             painter.drawLine(m_cXPos + ((m_cXPos - DECALAGE - ui->menuBar->height() )/20)*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES + i)
                              ,m_cYPos - ((m_cXPos - DECALAGE - ui->menuBar->height() )/20)*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES + i),m_hXPos,m_hYPos);
 
         }
-        m_couleur.setRgb(0,255,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_MINUTE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 400 ; i++){
             painter.drawLine(m_cXPos + ((m_cXPos - DECALAGE - ui->menuBar->height() )/30)*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES + i)
@@ -148,13 +148,13 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
 
 
         }
-        m_couleur.setRgb(255,0,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_SECONDE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 300 ; i++){
             painter.drawLine(m_cXPos + ((m_cXPos - DECALAGE - ui->menuBar->height() )/50)*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES + i)
                              ,m_cYPos - ((m_cXPos - DECALAGE - ui->menuBar->height() )/50)*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES + i),m_sXPos,m_sYPos);
         }
-        m_couleur.setRgb(0,0,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_TEXTE, 0).toInt());
         painter.setPen(m_couleur);
 
         for(int i = 1 ; i <= 60 ; i++){
@@ -177,14 +177,14 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         m_hXPos= m_cXPos + (m_cYPos - DECALAGE - ui->menuBar->height() )*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         m_hYPos= m_cYPos - (m_cYPos - DECALAGE - ui->menuBar->height() )*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES);
         painter.drawEllipse(m_centre,m_cYPos - ui->menuBar->height(),m_cYPos - ui->menuBar->height());
-        m_couleur.setRgb(0,0,255);
+        m_couleur.setRgba(m_settings->value(COULEUR_HEURE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 600 ; i++){
             painter.drawLine(m_cXPos + ((m_cYPos - DECALAGE - ui->menuBar->height() )/20)*cos((PI/2)-(m_minutes*PI)/FRACTION_HEURES + i)
                              ,m_cYPos - ((m_cYPos - DECALAGE - ui->menuBar->height() )/20)*sin((PI/2)-(m_minutes*PI)/FRACTION_HEURES + i),m_hXPos,m_hYPos);
 
         }
-        m_couleur.setRgb(0,255,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_MINUTE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 400 ; i++){
             painter.drawLine(m_cXPos + ((m_cYPos - DECALAGE - ui->menuBar->height() )/30)*cos((PI/2)-(m_minutes*PI)/FRACTION_MINUTES + i)
@@ -192,13 +192,13 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
 
 
         }
-        m_couleur.setRgb(255,0,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_SECONDE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 0 ; i < 300 ; i++){
             painter.drawLine(m_cXPos + ((m_cYPos - DECALAGE - ui->menuBar->height() )/50)*cos((PI/2)-(m_secondes*PI)/FRACTION_MINUTES + i)
                              ,m_cYPos - ((m_cYPos - DECALAGE - ui->menuBar->height() )/50)*sin((PI/2)-(m_secondes*PI)/FRACTION_MINUTES + i),m_sXPos,m_sYPos);
         }
-        m_couleur.setRgb(0,0,0);
+        m_couleur.setRgba(m_settings->value(COULEUR_TEXTE, 0).toInt());
         painter.setPen(m_couleur);
         for(int i = 1 ; i <= 60 ; i++){
             if(i%5 == 0){
