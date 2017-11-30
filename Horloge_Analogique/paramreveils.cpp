@@ -50,9 +50,18 @@ void ParamReveils::confirmeSettings()
 void ParamReveils::confirmeToutSettings()
 {
     m_settings->setValue(PATH_AUDIO, m_listeReveils.at(0)->getFilePath());
+    QStringList listeReveilActif;
     QList<QVariant> liste;
-    liste.append(m_settings->value(HEURE_REVEILS).toList());
-    liste.append(m_listeReveils.at(0)->getTemps().toString());
+    for(int i = 0 ; i < m_listeReveils.length(); i++){
+        qDebug() << m_listeReveils.at(i)->getTemps();
+        liste.append(m_listeReveils.at(i)->getTemps().toString());
+        if(m_listeReveils.at(i)->isActif()){
+            listeReveilActif.append("1");
+        }else{
+            listeReveilActif.append("0");
+        }
+    }
+    m_settings->setValue(REVEIL_ACTIF, listeReveilActif);
     m_settings->setValue(HEURE_REVEILS, liste);
 
 }

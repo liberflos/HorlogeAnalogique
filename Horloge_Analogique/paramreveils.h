@@ -26,6 +26,7 @@ public:
     explicit ParamReveils(int numberOReveil, QWidget *parent = 0);
     ~ParamReveils();
 
+    bool reveilsActif(int index);
 private:
     Ui::ParamReveils *ui;
     /**

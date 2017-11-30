@@ -35,6 +35,7 @@ ui(new Ui::ReveilWidget)
 {
     qDebug() <<QTime::fromString(temps) << temps;
     ui->setupUi(this);
+    m_temps = QTime::fromString(temps);
     ui->timeEdit->setTime(QTime::fromString(temps));
     ui->lineEditFilePath->setText(fichierAudio);
     connect(ui->checkBox_8, SIGNAL(stateChanged(int)), this, SLOT(checkTheState()));
@@ -57,6 +58,11 @@ QString ReveilWidget::getFilePath()
 QTime ReveilWidget::getTemps()
 {
     return m_temps;
+}
+
+bool ReveilWidget::isActif()
+{
+    return ui->checkBox_8->isChecked();
 }
 
 

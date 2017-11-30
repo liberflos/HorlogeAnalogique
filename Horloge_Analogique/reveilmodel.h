@@ -10,6 +10,7 @@
 
 #define PATH_AUDIO "PathAudio"
 #define HEURE_REVEILS "HeureReveils"
+#define REVEIL_ACTIF "ReveilActif"
 /**
  * @brief The ReveilModel class
  */

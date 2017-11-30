@@ -40,6 +40,7 @@ public:
      * @return
      */
     QTime getTemps();
+    bool isActif();
 private:
     Ui::ReveilWidget *ui;
     /**
