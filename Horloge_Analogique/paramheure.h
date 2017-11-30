@@ -6,9 +6,11 @@
 #include <QSettings>
 
 #define LANGUE "Langue"
+
 namespace Ui {
 class ParamHeure;
 }
+
 /**
  * @brief The ParamHeure class
  */
@@ -21,11 +23,17 @@ public:
      * @brief ParamHeure
      * @param parent
      */
+
     explicit ParamHeure(QWidget *parent = 0);
+
     ~ParamHeure();
 
 private:
     Ui::ParamHeure *ui;
+
+    /**
+     * @brief m_settings
+     */
     QSettings *m_settings;
 };
 

@@ -98,8 +98,5 @@ void ReveilWidget::setTemps(QTime temps)
 
 void ReveilWidget::supprimerReveil()
 {
-    qDebug() << "signal suprimerreveil" ;
-
     emit supprimerReveil_SIG(property("index").toInt());
-
 }

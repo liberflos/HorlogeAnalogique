@@ -35,6 +35,7 @@ public:
      * @param parent
      */
     explicit Affichage(QWidget *parent = 0);
+
     ~Affichage();
 
 private:
@@ -43,51 +44,77 @@ private:
      * @brief m_settings
      */
     QSettings *m_settings;
+
     /**
      * @brief m_couleurFondTMP
      */
     unsigned int m_couleurFondTMP;
+
     /**
      * @brief m_couleurHeureTMP
      */
     int m_couleurHeureTMP;
+
     /**
      * @brief m_couleurMinuteTMP
      */
     int m_couleurMinuteTMP;
+
     /**
      * @brief m_couleurSecondeTMP
      */
     int m_couleurSecondeTMP;
+
     /**
      * @brief m_couleurTexteTMP
      */
     int m_couleurTexteTMP;
+
     /**
      * @brief m_transparenceTMP
      */
     int m_transparenceTMP;
+
 private slots:
     /**
      * @brief confirmeSettings
      */
     void confirmeSettings();
+
     /**
      * @brief setTypeFond
      * @param index
      */
     void setTypeFond(int index);
+
     /**
      * @brief selectImage
      */
     void selectImage();
+
     /**
      * @brief selectCouleurFond
      */
     void selectCouleurFond();
+
+    /**
+     * @brief selectCouleurTexte
+     */
     void selectCouleurTexte();
+
+    /**
+     * @brief selectCouleurHeure
+     */
     void selectCouleurHeure();
+
+    /**
+     * @brief selectCouleurMinute
+     */
     void selectCouleurMinute();
+
+    /**
+     * @brief selectCouleurSeconde
+     */
     void selectCouleurSeconde();
 };
 

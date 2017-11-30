@@ -11,6 +11,7 @@
 #define PATH_AUDIO "PathAudio"
 #define HEURE_REVEILS "HeureReveils"
 #define REVEIL_ACTIF "ReveilActif"
+
 /**
  * @brief The ReveilModel class
  */
@@ -23,6 +24,7 @@ public:
      * @param parent
      */
     explicit ReveilModel(QWidget *parent = 0);
+
     /**
      * @brief ReveilModel
      * @param temps
@@ -30,35 +32,43 @@ public:
      * @param parent
      */
     explicit ReveilModel(QString temps, QString nomFichierAudio, QWidget *parent = 0);
+
     /**
      * @brief setTime
      * @param time
      */
     void setTime(int time);
+
 signals:
 
 public slots:
+
 private:
     /**
      * @brief m_player
      */
     QMediaPlayer *m_player;
+
     /**
      * @brief m_timer
      */
     QTimer *m_timer;
+
     /**
      * @brief m_settings
      */
     QSettings *m_settings;
+
     /**
      * @brief m_nomFichierAudio
      */
     QString m_nomFichierAudio;
+
     /**
      * @brief m_temps
      */
     QString m_temps;
+
 private slots:
     /**
      * @brief lancerSonnerie

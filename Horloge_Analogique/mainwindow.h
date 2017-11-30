@@ -60,150 +60,187 @@ public:
      * @param parent
      */
     explicit MainWindow(QWidget *parent = 0);
+
     ~MainWindow();
+
     /**
      * @brief keyPressEvent
      * @param event
      */
     void keyPressEvent(QKeyEvent *event);
+
     /**
      * @brief paintEvent
      */
     void paintEvent(QPaintEvent *);
+
     /**
      * @brief mouseDoubleClickEvent
      */
     void mouseDoubleClickEvent(QMouseEvent *);
-    /**
-     * @brief painterThemeNum
-     * @param painter
-     * @param fontSize
-     */
-    void painterThemeNum(QPainter &painter, int fontSize);
+
 private:
     Ui::MainWindow *ui;
-    /**
-     * @brief couleur
-     */
-    QColor m_couleur;
-    /**
-     * @brief centre : Centre de la MainWindow
-     */
-    QPoint m_centre;
-    /**
-     * @brief m_secondes
-     */
-    int m_secondes;
-    /**
-     * @brief m_minutes
-     */
-    int m_minutes;
-    /**
-     * @brief m_heures
-     */
-    int m_heures;
-    /**
-     * @brief cXPos
-     */
-    int m_cXPos;
-    /**
-     * @brief cYPos
-     */
-    int m_cYPos;
-    /**
-     * @brief sXPos
-     */
-    int m_sXPos;
-    /**
-     * @brief sYPos
-     */
-    int m_sYPos;
-    /**
-     * @brief mXPos
-     */
-    int m_mXPos;
-    /**
-     * @brief mYPos
-     */
-    int m_mYPos;
-    /**
-     * @brief hXPos
-     */
-    int m_hXPos;
-    /**
-     * @brief hYPos
-     */
-    int m_hYPos;
+
     /**
      * @brief timer
+     * @details Ce timer est synchronise avec le temps reel, il incremente les secondes, les minutes et les heures
      */
     QTimer *m_timer;
-    /**
-     * @brief m_timerShowFrame
-     */
-    QTimer *m_timerShowFrame;
-    /**
-     * @brief m_nbChrono
-     */
-    int m_nbChrono;
-    /**
-     * @brief m_nbMinuteurs
-     */
-    int m_nbMinuteurs;
-    /**
-     * @brief m_listeMinuteurs
-     */
-    QList<Minuteur*> m_listeMinuteurs;
-    /**
-     * @brief m_listeChronometres
-     */
-    QList<Chronometre*> m_listeChronometres;
-    /**
-     * @brief m_settings
-     */
-    QSettings *m_settings;
-    /**
-     * @brief m_listeReveils
-     */
-    QList<ReveilModel*> m_listeReveils;
+
+//Attributs associes au painter
+//---------------------------------------------------------------------------------------------------------------------
+    //Mise en forme
+
     /**
      * @brief m_brush
      */
     QBrush m_brush;
+
+    /**
+     * @brief couleur
+     */
+    QColor m_couleur;
+
     /**
      * @brief m_font
      */
     QFont m_font;
+
+    //Mise en Positions
+
+    /**
+     * @brief centre : Centre de la MainWindow
+     */
+    QPoint m_centre;
+
+    /**
+     * @brief cXPos
+     */
+    int m_cXPos;
+
+    /**
+     * @brief cYPos
+     */
+    int m_cYPos;
+
+    /**
+     * @brief hXPos
+     */
+    int m_hXPos;
+
+    /**
+     * @brief hYPos
+     */
+    int m_hYPos;
+
+    /**
+     * @brief mXPos
+     */
+    int m_mXPos;
+
+    /**
+     * @brief mYPos
+     */
+    int m_mYPos;
+
+    /**
+     * @brief sXPos
+     */
+    int m_sXPos;
+
+    /**
+     * @brief sYPos
+     */
+    int m_sYPos;
+
     /**
      * @brief m_point
      */
     QPoint m_point;
+
+    //Decompte
+
+    /**
+     * @brief m_heures
+     */
+    int m_heures;
+
+    /**
+     * @brief m_minutes
+     */
+    int m_minutes;
+
+    /**
+     * @brief m_secondes
+     */
+    int m_secondes;
+
+//Attributs de sauvegarde et recuperation des settings
+//---------------------------------------------------------------------------------------------------------------------
+    /**
+     * @brief m_listeChronometres
+     */
+    QList<Chronometre*> m_listeChronometres;
+
+    /**
+     * @brief m_listeHeures
+     */
     QStringList m_listeHeures;
 
+    /**
+     * @brief m_listeMinuteurs
+     */
+    QList<Minuteur*> m_listeMinuteurs;
+
+    /**
+     * @brief m_listeReveils
+     */
+    QList<ReveilModel*> m_listeReveils;
+
+    /**
+     * @brief m_nbChrono
+     */
+    int m_nbChrono;
+
+    /**
+     * @brief m_nbMinuteurs
+     */
+    int m_nbMinuteurs;
+
+    /**
+     * @brief m_settings
+     */
+    QSettings *m_settings;
+
 private slots:
-    /**
-     * @brief timerSlot
-     */
-    void timerSlot();
-    /**
-     * @brief menuAction
-     * @param action
-     */
-    void menuAction(QAction * action);
     /**
      * @brief MAJC
      * @param index
      */
     void MAJC(int index);
+
     /**
      * @brief MAJM
      * @param index
      */
     void MAJM(int index);
+
+    /**
+     * @brief menuAction
+     * @param action
+     */
+    void menuAction(QAction * action);
+
     /**
      * @brief settingsModifie
      */
     void settingsModifie();
+
+    /**
+     * @brief timerSlot
+     */
+    void timerSlot();
 
 };
 

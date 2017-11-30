@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
-    qDebug() << m_settings->value(HEURE_REVEILS);
-    qDebug() << m_settings->value(STYLE_HORLOGE);
     switch (m_settings->value(STYLE_HORLOGE).toInt()) {
     case 0:
         m_listeHeures.append("1");
@@ -44,6 +42,36 @@ MainWindow::MainWindow(QWidget *parent) :
         m_listeHeures.append("X");
         m_listeHeures.append("XI");
         m_listeHeures.append("XII");
+
+        break;
+    case 2:
+        m_listeHeures.append("0001");
+        m_listeHeures.append("0010");
+        m_listeHeures.append("0011");
+        m_listeHeures.append("0100");
+        m_listeHeures.append("0101");
+        m_listeHeures.append("0110");
+        m_listeHeures.append("0111");
+        m_listeHeures.append("1000");
+        m_listeHeures.append("1001");
+        m_listeHeures.append("1010");
+        m_listeHeures.append("1011");
+        m_listeHeures.append("1100");
+
+        break;
+    case 3:
+        m_listeHeures.append("1");
+        m_listeHeures.append("2");
+        m_listeHeures.append("3");
+        m_listeHeures.append("4");
+        m_listeHeures.append("5");
+        m_listeHeures.append("6");
+        m_listeHeures.append("7");
+        m_listeHeures.append("8");
+        m_listeHeures.append("9");
+        m_listeHeures.append("A");
+        m_listeHeures.append("B");
+        m_listeHeures.append("C");
 
         break;
     default:
@@ -234,72 +262,28 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
 //**********************************************METHODES PUBLIQUES*****************************************************
 //*********************************************************************************************************************
 
-void MainWindow::painterThemeNum(QPainter &painter, int fontSize)
-{
-
-    QStringList liste;
-    switch (m_settings->value(STYLE_HORLOGE).toInt()) {
-    case 0:
-        for(int i = 1 ; i <= 60 ; i++){
-            if(i%5 == 0){
-                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
-            }
-            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-            painter.drawEllipse(m_point,1,1);
-        }
-
-        break;
-    case 1:
-
-        break;
-    default:
-        for(int i = 1 ; i <= 60 ; i++){
-            if(i%5 == 0){
-                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
-            }
-            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-            painter.drawEllipse(m_point,1,1);
-        }
-        break;
-    }
-}
-
-
 //*********************************************************************************************************************
 //**************************************************SLOTS PRIVES*******************************************************
 //*********************************************************************************************************************
 
-void MainWindow::timerSlot()//__________________________________________________________________________Debut timerSlot
+void MainWindow::MAJC(int index)//___________________________________________________________________________Debut MAJC
 {
-    if(!m_timer->property("isSync").toBool()){
-        m_timer->setInterval(TIMER_DELAY);
-        m_timer->setProperty("isSync", true);
+    m_listeChronometres.removeAt(index);
+    for(int i = index ; i < m_listeChronometres.size(); i++){
+        m_listeChronometres.at(i)->deplacer();
+        m_listeChronometres.at(i)->setIndex(i);
     }
-    m_secondes++;
-
-    if(m_secondes == 60){
-        m_secondes =0;
-        m_minutes++;
-        m_heures++;
+}//____________________________________________________________________________________________________________Fin MAJC
+void MainWindow::MAJM(int index)//___________________________________________________________________________Debut MAJM
+{
+    m_listeMinuteurs.removeAt(index);
+    for(int i = index ; i < m_listeMinuteurs.size(); i++){
+        m_listeMinuteurs.at(i)->deplacer();
+        m_listeMinuteurs.at(i)->setIndex(i);
     }
-    if(m_minutes == 60*12){
-        m_heures=0;
-        m_minutes=0;
-    }
-
-    update();
-
-}//_______________________________________________________________________________________________________Fin timerSlot
-
+}//____________________________________________________________________________________________________________Fin MAJM
 void MainWindow::menuAction(QAction *action)//_________________________________________________________Debut menuAction
 {
-
     ParamHeure *nouvelleFenetre;
     Affichage *affichage;
     Theme *theme;
@@ -307,8 +291,6 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     ReveilModel *reveilModel;
     Minuteur *minuteur;
     ParamReveils *paramReveils;
-
-
     switch (action->property(PROPRIETE_ACTION_MENU).toInt()) {
     case VALEUR_ACTION_PARAMETRE_HEURE:
         nouvelleFenetre = new ParamHeure(this);
@@ -373,32 +355,12 @@ void MainWindow::menuAction(QAction *action)//__________________________________
     case VALEUR_ACTION_PARAM_DEFAUT :
         m_settings->clear();
         settingsModifie();
-        qDebug() << "settings cleared";
         break;
     default:
         break;
     }
-
 }//______________________________________________________________________________________________________Fin menuAction
-
-void MainWindow::MAJC(int index)
-{
-    m_listeChronometres.removeAt(index);
-    for(int i = index ; i < m_listeChronometres.size(); i++){
-        m_listeChronometres.at(i)->deplacer();
-        m_listeChronometres.at(i)->setIndex(i);
-    }
-}
-void MainWindow::MAJM(int index)
-{
-    m_listeMinuteurs.removeAt(index);
-    for(int i = index ; i < m_listeMinuteurs.size(); i++){
-        m_listeMinuteurs.at(i)->deplacer();
-        m_listeMinuteurs.at(i)->setIndex(i);
-    }
-}
-
-void MainWindow::settingsModifie()
+void MainWindow::settingsModifie()//______________________________________________________________Debut settingsModifie
 {
     m_listeHeures.clear();
     switch (m_settings->value(STYLE_HORLOGE).toInt()) {
@@ -415,7 +377,6 @@ void MainWindow::settingsModifie()
         m_listeHeures.append("10");
         m_listeHeures.append("11");
         m_listeHeures.append("12");
-
         break;
     case 1:
         m_listeHeures.append("I");
@@ -430,10 +391,54 @@ void MainWindow::settingsModifie()
         m_listeHeures.append("X");
         m_listeHeures.append("XI");
         m_listeHeures.append("XII");
-
+        break;
+    case 2:
+        m_listeHeures.append("0001");
+        m_listeHeures.append("0010");
+        m_listeHeures.append("0011");
+        m_listeHeures.append("0100");
+        m_listeHeures.append("0101");
+        m_listeHeures.append("0110");
+        m_listeHeures.append("0111");
+        m_listeHeures.append("1000");
+        m_listeHeures.append("1001");
+        m_listeHeures.append("1010");
+        m_listeHeures.append("1011");
+        m_listeHeures.append("1100");
+        break;
+    case 3:
+        m_listeHeures.append("1");
+        m_listeHeures.append("2");
+        m_listeHeures.append("3");
+        m_listeHeures.append("4");
+        m_listeHeures.append("5");
+        m_listeHeures.append("6");
+        m_listeHeures.append("7");
+        m_listeHeures.append("8");
+        m_listeHeures.append("9");
+        m_listeHeures.append("A");
+        m_listeHeures.append("B");
+        m_listeHeures.append("C");
         break;
     default:
         break;
     }
-
-}
+}//_________________________________________________________________________________________________Fin settingsModifie
+void MainWindow::timerSlot()//__________________________________________________________________________Debut timerSlot
+{
+    if(!m_timer->property("isSync").toBool()){
+        m_timer->setInterval(TIMER_DELAY);
+        m_timer->setProperty("isSync", true);
+    }
+    m_secondes++;
+    if(m_secondes == 60){
+        m_secondes =0;
+        m_minutes++;
+        m_heures++;
+    }
+    if(m_minutes == 60*12){
+        m_heures=0;
+        m_minutes=0;
+    }
+    update();
+}//_______________________________________________________________________________________________________Fin timerSlot

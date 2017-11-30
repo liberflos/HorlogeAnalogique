@@ -69,7 +69,6 @@ void ParamReveils::confirmeToutSettings()
 
 void ParamReveils::supprimerReveil(int index)
 {
-    qDebug() << "avant" << m_settings->value(HEURE_REVEILS);
     QList<QVariant> liste = m_settings->value(HEURE_REVEILS).toList();
     liste.removeAt(index);
     m_settings->setValue(HEURE_REVEILS,liste);
@@ -78,8 +77,4 @@ void ParamReveils::supprimerReveil(int index)
     for(int i = index; i < m_listeReveils.length(); i++){
         m_listeReveils.at(i)->setProperty("index", i);
     }
-    for(int i = 0; i < m_listeReveils.length(); i++){
-        qDebug() << m_listeReveils.at(i)->property("index");
-    }
-    qDebug() << "apres" << m_settings->value(HEURE_REVEILS);
 }

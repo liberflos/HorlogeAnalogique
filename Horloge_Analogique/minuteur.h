@@ -26,57 +26,71 @@ public:
      * @param parent
      */
     explicit Minuteur(QWidget *parent = 0);
+
     ~Minuteur();
+
     /**
      * @brief setIndex
      * @param index
      */
     void setIndex(int index);
+
     /**
      * @brief getIndex
      * @return
      */
     int getIndex();
+
     /**
      * @brief deplacer
      */
     void deplacer();
+
     /**
      * @brief redessiner
      */
     void redessiner();
+
 signals:
     /**
      * @brief closeSigM
      * @param index
      */
     void closeSigM(int index);
+
 private:
     Ui::Minuteur *ui;
+
     /**
      * @brief m_index
      */
     int m_index;
+
     /**
      * @brief m_s
      */
     int m_s;
+
     /**
      * @brief m_m
      */
     int m_m;
+
     /**
      * @brief m_h
      */
     int m_h;
+
     /**
      * @brief m_timer
      */
     QTimer *m_timer;
+
     /**
      * @brief m_temps
      */
     QTime m_temps;
+
     /**
      * @brief m_player
      */
@@ -87,22 +101,27 @@ private slots:
      * @brief updateTime
      */
     void updateTime();
+
     /**
      * @brief incremente
      */
     void incremente();
+
     /**
      * @brief hideAndShow
      */
     void hideAndShow(bool);
+
     /**
      * @brief quitter
      */
     void quitter();
+
     /**
      * @brief startMTimer
      */
     void startMTimer();
+
     /**
      * @brief stopMTimer
      */

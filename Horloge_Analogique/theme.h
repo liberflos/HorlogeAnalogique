@@ -7,9 +7,11 @@
 #define STYLE_HORLOGE "StyleHorloge"
 #define THEME_HORLOGE "ThemeHorloge"
 #define TYPE_CHRONO "TypeChrono"
+
 namespace Ui {
 class Theme;
 }
+
 /**
  * @brief The Theme class
  */
@@ -23,11 +25,16 @@ public:
      * @param parent
      */
     explicit Theme(QWidget *parent = 0);
+
     ~Theme();
 
 private:
     Ui::Theme *ui;
+    /**
+     * @brief m_settings
+     */
     QSettings *m_settings;
+
 private slots:
     /**
      * @brief confirmeSettings

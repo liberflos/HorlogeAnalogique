@@ -58,7 +58,7 @@ void Chronometre::hideAndShow(bool)
 void Chronometre::quitter()
 {
     emit closeSigC(m_index);
-    qDebug() << close();
+    close();
 }
 
 void Chronometre::startChrono()
@@ -83,7 +83,6 @@ void Chronometre::incrementChrono()
 {
     m_ms+= 10;
     if(m_ms == 1000){
-        qDebug() << "inc";
         if(m_s == 59){
             if(m_m == 59){
                 m_h++;
