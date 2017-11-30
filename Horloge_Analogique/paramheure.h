@@ -3,7 +3,9 @@
 
 #include <QDialog>
 #include <QFormLayout>
+#include <QSettings>
 
+#define LANGUE "Langue"
 namespace Ui {
 class ParamHeure;
 }
@@ -24,6 +26,7 @@ public:
 
 private:
     Ui::ParamHeure *ui;
+    QSettings *m_settings;
 };
 
 #endif // PARAMHEURE_H
