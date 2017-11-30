@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>223</width>
-    <height>118</height>
+    <width>235</width>
+    <height>152</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,14 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Theme</string>
+          <string>Thème</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Type chronomètres</string>
          </property>
         </widget>
        </item>
@@ -37,10 +44,13 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="comboBoxStyleHorloge"/>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox_2"/>
+        <widget class="QComboBox" name="comboBoxThemeHorloge"/>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxTypeChrono"/>
        </item>
       </layout>
      </item>

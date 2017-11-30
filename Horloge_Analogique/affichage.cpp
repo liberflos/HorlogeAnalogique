@@ -17,6 +17,8 @@ Affichage::Affichage(QWidget *parent) :
     ui->comboBoxTypeFond->addItem("Image");
     ui->comboBoxTypeFond->addItem("Couleur");
     ui->comboBoxTypeFond->setCurrentIndex(m_settings->value(TYPE_DE_FOND).toInt());
+    ui->comboBoxFormeAiguille->addItem("Traits");
+    ui->comboBoxFormeAiguille->addItem("Pointes");
     ui->spinBoxTailleTexte->setValue(m_settings->value(TAILLE_TEXTE, 14).toInt());
     ui->lineEditImageFond->setText(m_settings->value(PATH_IMAGE, "").toString());
 
