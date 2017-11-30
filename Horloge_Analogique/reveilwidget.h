@@ -41,6 +41,9 @@ public:
      */
     QTime getTemps();
     bool isActif();
+signals:
+    void supprimerReveil_SIG(int index);
+
 private:
     Ui::ReveilWidget *ui;
     /**
@@ -65,6 +68,7 @@ private slots:
      * @param temps
      */
     void setTemps(QTime temps);
+    void supprimerReveil();
 };
 
 #endif // REVEILWIDGET_H

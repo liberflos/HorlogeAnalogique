@@ -74,6 +74,7 @@ public:
      * @brief mouseDoubleClickEvent
      */
     void mouseDoubleClickEvent(QMouseEvent *);
+    void painterThemeNum(QPainter &painter, int fontSize);
 private:
     Ui::MainWindow *ui;
     /**

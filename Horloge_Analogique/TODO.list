@@ -3,3 +3,4 @@ Implementer l'enregistrement des parametres:
 Implementer l'option reveil: prise en charge audio, implementation de l'event
 Implementer la configuration graphique:
     type d'horloge, couleurs(des aiguilles, du texte, transparence du fond), type de fond(image ou couleur)
+Implementer l'execution automatique de l'application au demmarage de l'ordinateur, automatiser la configuration ( e.g. premiere execution -> creation d'un fichier ini)

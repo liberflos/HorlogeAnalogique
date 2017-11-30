@@ -43,6 +43,7 @@ private slots:
      */
     void confirmeSettings();
     void confirmeToutSettings();
+    void supprimerReveil(int index);
 };
 
 #endif // PARAMREVEILS_H

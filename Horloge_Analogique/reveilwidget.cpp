@@ -13,6 +13,7 @@ ReveilWidget::ReveilWidget(QWidget *parent) :
     this->setMinimumWidth(ui->horizontalLayout_2->minimumSize().width() + 20);
     connect(ui->toolButtonSelFile, SIGNAL(clicked(bool)), this, SLOT(selectSonnerie()));
     connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(setTemps(QTime)));
+    connect(ui->closeButton, SIGNAL(clicked(bool)), this, SLOT(supprimerReveil()));
 }
 
 ReveilWidget::ReveilWidget(QString fichierAudio, QWidget *parent) :
@@ -27,13 +28,13 @@ ReveilWidget::ReveilWidget(QString fichierAudio, QWidget *parent) :
     this->setMinimumWidth(ui->horizontalLayout_2->minimumSize().width() + 20);
     connect(ui->toolButtonSelFile, SIGNAL(clicked(bool)), this, SLOT(selectSonnerie()));
     connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(setTemps(QTime)));
+    connect(ui->closeButton, SIGNAL(clicked(bool)), this, SLOT(supprimerReveil()));
 }
 
 ReveilWidget::ReveilWidget(QString temps, QString fichierAudio, QWidget *parent) :
 QWidget(parent),
 ui(new Ui::ReveilWidget)
 {
-    qDebug() <<QTime::fromString(temps) << temps;
     ui->setupUi(this);
     m_temps = QTime::fromString(temps);
     ui->timeEdit->setTime(QTime::fromString(temps));
@@ -42,7 +43,7 @@ ui(new Ui::ReveilWidget)
     this->setMinimumWidth(ui->horizontalLayout_2->minimumSize().width() + 20);
     connect(ui->toolButtonSelFile, SIGNAL(clicked(bool)), this, SLOT(selectSonnerie()));
     connect(ui->timeEdit, SIGNAL(timeChanged(QTime)), this, SLOT(setTemps(QTime)));
-
+    connect(ui->closeButton, SIGNAL(clicked(bool)), this, SLOT(supprimerReveil()));
 }
 
 ReveilWidget::~ReveilWidget()
@@ -92,5 +93,13 @@ void ReveilWidget::checkTheState()
 
 void ReveilWidget::setTemps(QTime temps)
 {
-        m_temps = temps;
+    m_temps = temps;
+}
+
+void ReveilWidget::supprimerReveil()
+{
+    qDebug() << "signal suprimerreveil" ;
+
+    emit supprimerReveil_SIG(property("index").toInt());
+
 }

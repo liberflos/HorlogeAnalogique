@@ -53,6 +53,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QToolButton" name="closeButton">
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>

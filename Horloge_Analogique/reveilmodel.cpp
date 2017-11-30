@@ -8,17 +8,14 @@ ReveilModel::ReveilModel(QString temps,QString nomFichierAudio, QWidget *parent)
 {
     m_timer = new QTimer(this);
     m_temps = temps;
-    qDebug() <<m_temps;
     m_nomFichierAudio = nomFichierAudio;
     connect(m_timer, SIGNAL(timeout()), this, SLOT(lancerSonnerie()));
     long delai = ((QTime::fromString(m_temps).hour()*3600 + QTime::fromString(m_temps).minute()*60) -
                   (QTime::currentTime().hour()*3600 + QTime::currentTime().minute()*60 +
                    QTime::currentTime().second()))*1000 - QTime::currentTime().msec();
-    qDebug() << delai;
     if(delai<=0){
         delai += 24*3600000;
     }
-    qDebug() << delai << QTime::fromMSecsSinceStartOfDay(delai);
         m_timer->start(delai);
 }
 

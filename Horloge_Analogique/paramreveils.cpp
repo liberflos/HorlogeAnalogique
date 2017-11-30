@@ -26,6 +26,8 @@ ParamReveils::ParamReveils(int numberOReveil, QWidget *parent) :
                                                       m_settings->value(PATH_AUDIO).toString(),this);
         ui->verticalLayout->insertWidget(i, reveilWidget);
         m_listeReveils.append(reveilWidget);
+        reveilWidget->setProperty("index", i);
+        connect(reveilWidget,SIGNAL(supprimerReveil_SIG(int)),this, SLOT(supprimerReveil(int)));
     }
         connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
         connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
@@ -53,7 +55,6 @@ void ParamReveils::confirmeToutSettings()
     QStringList listeReveilActif;
     QList<QVariant> liste;
     for(int i = 0 ; i < m_listeReveils.length(); i++){
-        qDebug() << m_listeReveils.at(i)->getTemps();
         liste.append(m_listeReveils.at(i)->getTemps().toString());
         if(m_listeReveils.at(i)->isActif()){
             listeReveilActif.append("1");
@@ -64,4 +65,21 @@ void ParamReveils::confirmeToutSettings()
     m_settings->setValue(REVEIL_ACTIF, listeReveilActif);
     m_settings->setValue(HEURE_REVEILS, liste);
 
+}
+
+void ParamReveils::supprimerReveil(int index)
+{
+    qDebug() << "avant" << m_settings->value(HEURE_REVEILS);
+    QList<QVariant> liste = m_settings->value(HEURE_REVEILS).toList();
+    liste.removeAt(index);
+    m_settings->setValue(HEURE_REVEILS,liste);
+    m_listeReveils.at(index)->deleteLater();
+    m_listeReveils.removeAt(index);
+    for(int i = index; i < m_listeReveils.length(); i++){
+        m_listeReveils.at(i)->setProperty("index", i);
+    }
+    for(int i = 0; i < m_listeReveils.length(); i++){
+        qDebug() << m_listeReveils.at(i)->property("index");
+    }
+    qDebug() << "apres" << m_settings->value(HEURE_REVEILS);
 }

@@ -122,16 +122,7 @@ void MainWindow::paintEvent(QPaintEvent *)//____________________________________
         m_couleur.setRgb(0,0,0);
         painter.setPen(m_couleur);
 
-        for(int i = 1 ; i <= 60 ; i++){
-            if(i%5 == 0){
-                painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
-                                 ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
-            }
-            m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
-            m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
-            painter.drawEllipse(m_point,1,1);
-        }
+        painterThemeNum(painter, fontSize);
         painter.drawText(m_cXPos - (m_font.pointSize()/3)*QDate::currentDate().toString().length() , m_centre.y() + m_cXPos/3,QDate::currentDate().toString());
 
     }else{
@@ -191,6 +182,23 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
         this->setGeometry(this->x(),this->y(), this->width(), this->height());
         this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
         this->show();
+    }
+}
+
+void MainWindow::painterThemeNum(QPainter &painter, int fontSize)
+{
+//    if(){
+
+//    }
+    for(int i = 1 ; i <= 60 ; i++){
+        if(i%5 == 0){
+            painter.drawText(m_cXPos+ (m_cXPos - fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                             ,m_cYPos- (m_cXPos - fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES) - fontSize
+                             ,2*fontSize,2*fontSize, Qt::AlignCenter,QString::number(i/5));
+        }
+        m_point.setX(m_cXPos+ (m_cXPos - 2*fontSize)*cos((PI/2)-(i*PI)/FRACTION_MINUTES));
+        m_point.setY(m_cYPos- (m_cXPos - 2*fontSize)*sin((PI/2)-(i*PI)/FRACTION_MINUTES));
+        painter.drawEllipse(m_point,1,1);
     }
 }
 
