@@ -37,3 +37,15 @@ Tache de fond :
 Fonctionnalites a ajouter :
         - choix de garder l'application en premier plan ou non
         -
+
+Pour les developpeurs :
+        - completer les commentaires doxygen
+        - ajouter la generation automatique de documentation doxygen au projet
+        - (optionel) creer une page css pour personnaliser la presentation de la documentation
+
+Projet General :
+        ->porter le projet sur android :
+                - finir de configurer le compilateurs
+        ->Remplir le fichier README.md
+        ->Ajouter les licenses
+
