@@ -17,6 +17,7 @@
 #include <QList>
 #include <QMouseEvent>
 #include <QSettings>
+#include <QMoveEvent>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -78,7 +79,7 @@ public:
      * @brief mouseDoubleClickEvent
      */
     void mouseDoubleClickEvent(QMouseEvent *);
-
+    void moveEvent(QMoveEvent *event);
 private:
     Ui::MainWindow *ui;
 

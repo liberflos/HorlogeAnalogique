@@ -77,6 +77,11 @@ MainWindow::MainWindow(QWidget *parent) :
     default:
         break;
     }
+    qDebug() << m_settings->value("Position_Fenetre", 0);
+    if(m_settings->value("Position_Fenetre", 0) != 0){
+        this->setGeometry(m_settings->value("Position_Fenetre").toRect());
+
+    }
 //Configuration de l'interface graphique
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
@@ -257,6 +262,11 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
     }
 }
 
+void MainWindow::moveEvent(QMoveEvent *event)
+{
+    qDebug() << "Moved";
+    m_settings->setValue("Position_Fenetre", this->geometry());
+}
 
 //*********************************************************************************************************************
 //**********************************************METHODES PUBLIQUES*****************************************************
