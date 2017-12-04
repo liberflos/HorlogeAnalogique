@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>364</height>
+    <width>425</width>
+    <height>426</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,9 +75,23 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="labelTailleTexte">
          <property name="text">
           <string>Taille du Texte</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelMode">
+         <property name="text">
+          <string>Mode Widget</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelPosition">
+         <property name="text">
+          <string>Forcer premier plan</string>
          </property>
         </widget>
        </item>
@@ -154,6 +168,20 @@
         <widget class="QSpinBox" name="spinBoxTailleTexte">
          <property name="value">
           <number>14</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxMode">
+         <property name="text">
+          <string>Par Défaut</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxPosition">
+         <property name="text">
+          <string>Par Défaut</string>
          </property>
         </widget>
        </item>

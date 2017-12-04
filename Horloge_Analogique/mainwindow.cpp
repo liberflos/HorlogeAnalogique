@@ -253,12 +253,17 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
 {
     if(this->windowFlags().testFlag(Qt::FramelessWindowHint)){
         this->setWindowFlags(Qt::WindowTitleHint);
+        this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
+        this->setAttribute(Qt::WA_TranslucentBackground, false);
+        this->setAttribute(Qt::WA_NoSystemBackground, false);
         ui->menuBar->show();
         this->show();
     }else{
         ui->menuBar->hide();
-        this->setGeometry(this->x(),this->y(), this->width(), this->height());
-        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
+        this->setAttribute(Qt::WA_TranslucentBackground);
+        this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
+        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+//        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
         this->show();
     }
 }
