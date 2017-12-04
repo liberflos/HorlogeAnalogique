@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
+    qDebug() << m_settings->allKeys();
     switch (m_settings->value(STYLE_HORLOGE).toInt()) {
     case 0:
         m_listeHeures.append("1");
@@ -77,9 +78,9 @@ MainWindow::MainWindow(QWidget *parent) :
     default:
         break;
     }
-    qDebug() << m_settings->value("Position_Fenetre", 0);
-    if(m_settings->value("Position_Fenetre", 0) != 0){
-        this->setGeometry(m_settings->value("Position_Fenetre").toRect());
+    qDebug() << m_settings->value(GEOMETRIE_FENETRE, 0);
+    if(m_settings->value(GEOMETRIE_FENETRE, 0) != 0){
+        this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
 
     }
 //Configuration de l'interface graphique
@@ -264,8 +265,12 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
 
 void MainWindow::moveEvent(QMoveEvent *event)
 {
-    qDebug() << "Moved";
-    m_settings->setValue("Position_Fenetre", this->geometry());
+    m_settings->setValue(GEOMETRIE_FENETRE, this->geometry());
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    m_settings->setValue(GEOMETRIE_FENETRE, this->geometry());
 }
 
 //*********************************************************************************************************************

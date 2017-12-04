@@ -18,6 +18,7 @@
 #include <QMouseEvent>
 #include <QSettings>
 #include <QMoveEvent>
+#include <QResizeEvent>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -34,6 +35,7 @@
 #define FRACTION_HEURES 360
 #define TIMER_DELAY 1000
 #define PROPRIETE_ACTION_MENU "propriete_action_menu"
+#define GEOMETRIE_FENETRE "Geometrie_Fenetre"
 #define VALEUR_ACTION_FERMER 1
 #define VALEUR_ACTION_PARAMETRE_HEURE 2
 #define VALEUR_ACTION_AFFICHAGE 3
@@ -80,6 +82,7 @@ public:
      */
     void mouseDoubleClickEvent(QMouseEvent *);
     void moveEvent(QMoveEvent *event);
+    void resizeEvent(QResizeEvent *event);
 private:
     Ui::MainWindow *ui;
 
