@@ -3,6 +3,57 @@
 # Project created by QtCreator 2017-11-16T10:55:44
 #
 #-------------------------------------------------
+
+#android {
+#    QT += androidextras
+
+#    # Default rules for deployment.
+#    include(deployment.pri)
+
+#    DISTFILES += \
+#        android/gradle/wrapper/gradle-wrapper.jar \
+#        android/AndroidManifest.xml \
+#        android/res/values/libs.xml \
+#        android/build.gradle \
+#        android/gradle/wrapper/gradle-wrapper.properties \
+#        android/gradlew \
+#        android/gradlew.bat \
+#        android/src/com/example/myproject/MySubclassOfQtActivity.java
+
+#    ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+#}
+
+#----------------------------------------------------------------------------------------------------------
+#in a deployement.pri file
+
+#android-no-sdk {
+#    target.path = /data/user/qt
+#    export(target.path)
+#    INSTALLS += target
+#} else:android {
+#    x86 {
+#        target.path = /libs/x86
+#    } else: armeabi-v7a {
+#        target.path = /libs/armeabi-v7a
+#    } else {
+#        target.path = /libs/armeabi
+#    }
+#    export(target.path)
+#    INSTALLS += target
+#} else:unix {
+#    isEmpty(target.path) {
+#        qnx {
+#            target.path = /tmp/$${TARGET}/bin
+#        } else {
+#            target.path = /opt/$${TARGET}/bin
+#        }
+#        export(target.path)
+#    }
+#    INSTALLS += target
+#}
+
+#export(INSTALLS)
+#----------------------------------------------------------------------------------------------------------
 QT       += core gui
 QT += multimedia
 
@@ -31,7 +82,8 @@ SOURCES += main.cpp\
     theme.cpp \
     paramreveils.cpp \
     reveilmodel.cpp \
-    reveilwidget.cpp
+    reveilwidget.cpp \
+    horloge.cpp
 
 HEADERS  += mainwindow.h \
     paramheure.h \
@@ -41,7 +93,8 @@ HEADERS  += mainwindow.h \
     theme.h \
     paramreveils.h \
     reveilmodel.h \
-    reveilwidget.h
+    reveilwidget.h \
+    horloge.h
 
 FORMS    += mainwindow.ui \
     paramheure.ui \
@@ -50,7 +103,8 @@ FORMS    += mainwindow.ui \
     affichage.ui \
     theme.ui \
     paramreveils.ui \
-    reveilwidget.ui
+    reveilwidget.ui \
+    horloge.ui
 
 DISTFILES += \
     TODO.list

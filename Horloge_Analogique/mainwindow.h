@@ -19,6 +19,7 @@
 #include <QSettings>
 #include <QMoveEvent>
 #include <QResizeEvent>
+#include <QPixmap>
 
 #include "paramheure.h"
 #include "chronometre.h"
@@ -92,93 +93,93 @@ private:
      */
     QTimer *m_timer;
 
-//Attributs associes au painter
-//---------------------------------------------------------------------------------------------------------------------
-    //Mise en forme
+    //Attributs associes au painter
+    //---------------------------------------------------------------------------------------------------------------------
+        //Mise en forme
 
-    /**
-     * @brief m_brush
-     */
-    QBrush m_brush;
+        /**
+         * @brief m_brush
+         */
+        QBrush m_brush;
 
-    /**
-     * @brief couleur
-     */
-    QColor m_couleur;
+        /**
+         * @brief couleur
+         */
+        QColor m_couleur;
 
-    /**
-     * @brief m_font
-     */
-    QFont m_font;
+        /**
+         * @brief m_font
+         */
+        QFont m_font;
 
-    //Mise en Positions
+        //Mise en Positions
 
-    /**
-     * @brief centre : Centre de la MainWindow
-     */
-    QPoint m_centre;
+        /**
+         * @brief centre : Centre de la MainWindow
+         */
+        QPoint m_centre;
 
-    /**
-     * @brief cXPos
-     */
-    int m_cXPos;
+        /**
+         * @brief cXPos
+         */
+        int m_cXPos;
 
-    /**
-     * @brief cYPos
-     */
-    int m_cYPos;
+        /**
+         * @brief cYPos
+         */
+        int m_cYPos;
 
-    /**
-     * @brief hXPos
-     */
-    int m_hXPos;
+        /**
+         * @brief hXPos
+         */
+        int m_hXPos;
 
-    /**
-     * @brief hYPos
-     */
-    int m_hYPos;
+        /**
+         * @brief hYPos
+         */
+        int m_hYPos;
 
-    /**
-     * @brief mXPos
-     */
-    int m_mXPos;
+        /**
+         * @brief mXPos
+         */
+        int m_mXPos;
 
-    /**
-     * @brief mYPos
-     */
-    int m_mYPos;
+        /**
+         * @brief mYPos
+         */
+        int m_mYPos;
 
-    /**
-     * @brief sXPos
-     */
-    int m_sXPos;
+        /**
+         * @brief sXPos
+         */
+        int m_sXPos;
 
-    /**
-     * @brief sYPos
-     */
-    int m_sYPos;
+        /**
+         * @brief sYPos
+         */
+        int m_sYPos;
 
-    /**
-     * @brief m_point
-     */
-    QPoint m_point;
+        /**
+         * @brief m_point
+         */
+        QPoint m_point;
 
-    //Decompte
+        //Decompte
 
-    /**
-     * @brief m_heures
-     */
-    int m_heures;
+        /**
+         * @brief m_heures
+         */
+        int m_heures;
 
-    /**
-     * @brief m_minutes
-     */
-    int m_minutes;
+        /**
+         * @brief m_minutes
+         */
+        int m_minutes;
 
-    /**
-     * @brief m_secondes
-     */
-    int m_secondes;
+        /**
+         * @brief m_secondes
+         */
+        int m_secondes;
 
 //Attributs de sauvegarde et recuperation des settings
 //---------------------------------------------------------------------------------------------------------------------
