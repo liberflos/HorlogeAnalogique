@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-//Récupération des settings
+    //Récupération des settings
     QCoreApplication::setOrganizationName("AppliHours");
     QCoreApplication::setApplicationName("HorlogeAnalogique");
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
         this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
 
     }
-//Configuration de l'interface graphique
+    //Configuration de l'interface graphique
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->setToolTip("Double-cliquer pour afficher/cacher les menus");
@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_nbMinuteurs = 0;
     m_timer = new QTimer(this);
     m_timer->setProperty("isSync", false);
-//Definitions des propriétés des actions du menu
+    //Definitions des propriétés des actions du menu
     ui->actionParametres_de_l_heure->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_PARAMETRE_HEURE);
     ui->actionAffichage_2->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_AFFICHAGE);
     ui->actionThemes->setProperty(PROPRIETE_ACTION_MENU,VALEUR_ACTION_THEME);
@@ -40,14 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionParam_tres_par_d_faut->setProperty(PROPRIETE_ACTION_MENU, VALEUR_ACTION_PARAM_DEFAUT);
     connect(ui->menuBar,SIGNAL(triggered(QAction*)),this, SLOT(menuAction(QAction*)));
     connect(m_timer, SIGNAL(timeout()),this,SLOT(timerSlot()));
-//Demmarage de l'horloge
+    //Demmarage de l'horloge
     m_timer->start(TIMER_DELAY - QTime::currentTime().msec());
-//Création des réveils
+    //Création des réveils
     QList<QVariant> listeReveils;
     listeReveils.append(m_settings->value(HEURE_REVEILS).toList());
     for(int i = 0 ; i < listeReveils.length() ; i++){
         ReveilModel *reveilModel = new ReveilModel(m_settings->value(HEURE_REVEILS).toList().at(i).toString(),
-                                     m_settings->value(PATH_AUDIO).toString(),this);
+                                                   m_settings->value(PATH_AUDIO).toString(),this);
         m_listeReveils.append(reveilModel);
     }
 }//______________________________________________________________________________________________________Fin MainWindow
@@ -82,7 +82,7 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
         this->setWindowFlags(Qt::WindowTitleHint);
         this->setAttribute(Qt::WA_TranslucentBackground, false);
         this->setAttribute(Qt::WA_NoSystemBackground, false);
-//        this->move(m_settings->value(GEOMETRIE_FENETRE).toRect().topLeft());
+        //        this->move(m_settings->value(GEOMETRIE_FENETRE).toRect().topLeft());
         this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
         ui->menuBar->show();
         this->show();
@@ -90,8 +90,8 @@ void MainWindow::mouseDoubleClickEvent(QMouseEvent *)
         ui->menuBar->hide();
         this->setAttribute(Qt::WA_TranslucentBackground);
         this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
-//        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
-//        this->move(m_settings->value(GEOMETRIE_FENETRE).toRect().topLeft());
+        //        this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint);
+        //        this->move(m_settings->value(GEOMETRIE_FENETRE).toRect().topLeft());
         this->setGeometry(m_settings->value(GEOMETRIE_FENETRE).toRect());
         this->show();
     }
@@ -212,67 +212,7 @@ void MainWindow::menuAction(QAction *action)//__________________________________
 }//______________________________________________________________________________________________________Fin menuAction
 void MainWindow::settingsModifie()//______________________________________________________________Debut settingsModifie
 {
-    m_listeHeures.clear();
-    switch (m_settings->value(STYLE_HORLOGE).toInt()) {
-    case 0:
-        m_listeHeures.append("1");
-        m_listeHeures.append("2");
-        m_listeHeures.append("3");
-        m_listeHeures.append("4");
-        m_listeHeures.append("5");
-        m_listeHeures.append("6");
-        m_listeHeures.append("7");
-        m_listeHeures.append("8");
-        m_listeHeures.append("9");
-        m_listeHeures.append("10");
-        m_listeHeures.append("11");
-        m_listeHeures.append("12");
-        break;
-    case 1:
-        m_listeHeures.append("I");
-        m_listeHeures.append("II");
-        m_listeHeures.append("III");
-        m_listeHeures.append("IV");
-        m_listeHeures.append("V");
-        m_listeHeures.append("VI");
-        m_listeHeures.append("VII");
-        m_listeHeures.append("VIII");
-        m_listeHeures.append("IX");
-        m_listeHeures.append("X");
-        m_listeHeures.append("XI");
-        m_listeHeures.append("XII");
-        break;
-    case 2:
-        m_listeHeures.append("0001");
-        m_listeHeures.append("0010");
-        m_listeHeures.append("0011");
-        m_listeHeures.append("0100");
-        m_listeHeures.append("0101");
-        m_listeHeures.append("0110");
-        m_listeHeures.append("0111");
-        m_listeHeures.append("1000");
-        m_listeHeures.append("1001");
-        m_listeHeures.append("1010");
-        m_listeHeures.append("1011");
-        m_listeHeures.append("1100");
-        break;
-    case 3:
-        m_listeHeures.append("1");
-        m_listeHeures.append("2");
-        m_listeHeures.append("3");
-        m_listeHeures.append("4");
-        m_listeHeures.append("5");
-        m_listeHeures.append("6");
-        m_listeHeures.append("7");
-        m_listeHeures.append("8");
-        m_listeHeures.append("9");
-        m_listeHeures.append("A");
-        m_listeHeures.append("B");
-        m_listeHeures.append("C");
-        break;
-    default:
-        break;
-    }
+    ui->label->settingsModifie();
 }//_________________________________________________________________________________________________Fin settingsModifie
 void MainWindow::timerSlot()//__________________________________________________________________________Debut timerSlot
 {

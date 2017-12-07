@@ -33,6 +33,7 @@ public:
     void setHeures();
     void setMinutes();
     void setSecondes();
+    void settingsModifie();
 
 private:
     Ui::Horloge *ui;
