@@ -20,6 +20,8 @@
 #include <QMoveEvent>
 #include <QResizeEvent>
 #include <QPixmap>
+#include <QScreen>
+#include <QWindow>
 
 #include "paramheure.h"
 #include "chronometre.h"

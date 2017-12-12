@@ -7,6 +7,13 @@ Chronometre::Chronometre(QWidget *parent) :
     ui(new Ui::Chronometre)
 {
     ui->setupUi(this);
+
+//    QScreen *screen = QGuiApplication::primaryScreen();
+//    qDebug() << "pixelsize " << ui->timeEdit->font().pixelSize() << " size " << ui->timeEdit->height();
+//    setFixedWidth(screen->geometry().width()/2);
+//    setFixedHeight(200);
+//    ui->timeEdit->setFixedHeight(height()/2);
+//    ui->timeEdit->setFixedWidth(width() - ui->quitButton->width());
     m_h = 0;
     m_m = 0;
     m_s = 0;

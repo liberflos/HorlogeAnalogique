@@ -1,5 +1,6 @@
 #include "paramreveils.h"
 #include "ui_paramreveils.h"
+#include <QMainWindow>
 
 ParamReveils::ParamReveils(QWidget *parent) :
     QDialog(parent),
@@ -10,6 +11,8 @@ ParamReveils::ParamReveils(QWidget *parent) :
     ReveilWidget *reveilWidget = new ReveilWidget(this);
     ui->verticalLayout->insertWidget(0, reveilWidget);
     m_listeReveils.append(reveilWidget);
+//    setFixedHeight(((QMainWindow*)this->parent())->height());
+//    setFixedWidth(((QMainWindow*)this->parent())->width());
         connect(ui->buttonBox,SIGNAL(accepted()),this, SLOT(accept()));
         connect(ui->buttonBox,SIGNAL(rejected()),this, SLOT(reject()));
         connect(this, SIGNAL(accepted()), this, SLOT(confirmeSettings()));

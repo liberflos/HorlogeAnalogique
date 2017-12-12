@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QErrorMessage>
+#include <QScreen>
 
 #define TYPE_HORLOGE "TypeHorloge"
 #define TAILLE_TEXTE "TailleTexte"

@@ -3,12 +3,21 @@
 #include <QSettings>
 #include <QDebug>
 #include <QColorDialog>
+#include <QMainWindow>
 
 Affichage::Affichage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Affichage)
 {
     ui->setupUi(this);
+//    QScreen *screen = QGuiApplication::primaryScreen();
+//    qDebug() << screen->geometry().height() << "WINDOW BASE SIZE";
+//    setFixedHeight(screen->geometry().height() - 150);
+//    setFixedWidth(screen->geometry().width());
+//    setFixedHeight(((QMainWindow*)this->parent())->height());
+//    setFixedWidth(((QMainWindow*)this->parent())->width());
+
+
     m_settings = new QSettings("AppliHours", "HorlogeAnalogique");
 
     ui->comboBoxTypeHorloge->addItem("Analogique");

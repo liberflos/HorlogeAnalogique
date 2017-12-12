@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
                                                    m_settings->value(PATH_AUDIO).toString(),this);
         m_listeReveils.append(reveilModel);
     }
+
 }//______________________________________________________________________________________________________Fin MainWindow
 
 MainWindow::~MainWindow()

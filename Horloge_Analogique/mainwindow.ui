@@ -27,7 +27,7 @@
     <item>
      <widget class="Horloge" name="label">
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
